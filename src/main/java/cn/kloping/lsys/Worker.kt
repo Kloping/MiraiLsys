@@ -29,7 +29,7 @@ suspend fun handMessage(str: String, event: MessageEvent) {
 
 val histMat = ConcurrentHashMap<String, String>();
 
-val histMatO = ConcurrentHashMap<String, String>();
+val MethodName2Ostr = ConcurrentHashMap<String, String>();
 
 suspend fun run(str: String, event: MessageEvent) {
     var text = str;
@@ -45,14 +45,16 @@ suspend fun run(str: String, event: MessageEvent) {
             if (text.matches(Regex(e))) {
                 text = e;
                 methodName = conf.invokes[text];
-                methodName?.let { histMatO.put(it, e) }
+                methodName?.let { MethodName2Ostr.put(it, e) }
                 break;
             }
         }
     }
-
-    histMatO.containsKey(methodName).apply {
-        text = histMatO.get(methodName).toString();
+    methodName?.let {
+        MethodName2Ostr?.let {
+            if (MethodName2Ostr.containsKey(methodName))
+                text = MethodName2Ostr.get(methodName).toString();
+        }
     }
 
     methodName?.apply {

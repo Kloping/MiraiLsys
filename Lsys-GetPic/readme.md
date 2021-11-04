@@ -9,6 +9,6 @@
 
 ### 其命令 在群里 "搜图菜单" 即可
 
-    /Lsys getPic Num=?  设置发送几张
-    /Lsys getPic Cd=?   设置冷却
-    /Lsys getPic relod  重新加载配置
+    /Lsys_get_pic num=?  设置发送几张
+    /Lsys_get_pic cd=?   设置冷却
+    /Lsys_get_pic relod  重新加载配置

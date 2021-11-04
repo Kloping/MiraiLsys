@@ -33,6 +33,6 @@ public class PluginMain extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("");
-        CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, true);
+        CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, false);
     }
 }
