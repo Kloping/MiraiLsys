@@ -35,18 +35,23 @@ fun toText(chain: MessageChain): String {
     return sb.toString();
 }
 
-suspend fun createImageInGroup(group: Contact, path: String): Image? {
-    return try {
-        if (path.startsWith("http")) {
-            group.uploadImage(URL(path).openStream())
-        } else if (path.startsWith("{")) {
-            Image.fromId(path)
-        } else {
-            group.uploadImage(File(path))
+object MessageUtils {
+
+    @JvmStatic
+    suspend fun createImageInGroup(group: Contact, path: String): Image? {
+        return try {
+            if (path.startsWith("http")) {
+                group.uploadImage(URL(path).openStream())
+            } else if (path.startsWith("{")) {
+                Image.fromId(path)
+            } else {
+                group.uploadImage(File(path))
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+            System.err.println(path + "加载失败")
+            null
         }
-    } catch (e: IOException) {
-        e.printStackTrace()
-        System.err.println(path + "加载失败")
-        null
     }
+
 }

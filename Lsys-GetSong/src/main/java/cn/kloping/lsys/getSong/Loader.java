@@ -88,7 +88,7 @@ public class Loader {
         invokeGroup.getInvokesAfter().put("酷狗点歌.*", new String[]{"<$1 = $2, $3, $4, http://49.232.209.180:20041/, $6, $7>", "<At = ?>点歌失败"});
         invokeGroup.getInvokesAfter().put("QQ点歌.*", new String[]{"<$1 = $2, $3, $4, http://49.232.209.180:20041/, $6, $7>", "<At = ?>点歌失败"});
         invokeGroup.getInvokesAfter().put("网易点歌.*", new String[]{"<$1 = $2, $3, $4, http://49.232.209.180:20041/, $6, $7>", "<At = ?>点歌失败"});
-        invokeGroup.getInvokesAfter().put("点歌系统", new String[]{"<At = ?>\n酷狗点歌 歌名\n网易点歌 歌名\nQQ点歌 歌名"});
+        invokeGroup.getInvokesAfter().put("点歌系统", new String[]{"<At = ?>\n点歌系统\n酷狗点歌 歌名\n网易点歌 歌名\nQQ点歌 歌名"});
     }
 
     public static final Runnable runnable = () -> {

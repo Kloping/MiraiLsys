@@ -74,5 +74,5 @@ hs_err_pid*
 /config
 /data
 /plugins
-*/test
+**/test
 *.json

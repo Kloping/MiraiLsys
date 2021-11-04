@@ -10,25 +10,68 @@ import cn.kloping.url.UrlUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import kotlin.jvm.functions.Function2;
+import net.mamoe.mirai.contact.Contact;
+import net.mamoe.mirai.message.data.ForwardMessageBuilder;
+import net.mamoe.mirai.message.data.Image;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLEncoder;
 
 public class Loader {
-    public static final String baseUrl = "http://49.232.209.180:20041/api/search/pic?keyword=%s&num=2&type=duit";
+    public static final String baseUrl = "http://49.232.209.180:20041/api/search/pic?keyword=%s&num=12&type=%s";
 
     public static final InvokeGroup invokeGroup = new InvokeGroup("getPic");
 
     static {
         invokeGroup.getInvokes().put("发张.*", "getPicOne");
         invokeGroup.getInvokesAfter().put("发张.*", new String[]{"<Image = $1>", "获取失败"});
+
+        invokeGroup.getInvokes().put("搜图菜单", "method");
+        invokeGroup.getInvokesAfter().put("搜图菜单", new String[]{"<At = ?>\n搜图菜单\n发张 xx\n百度搜图 xx\n堆糖搜图 xx"});
+
+        invokeGroup.getInvokes().put("百度搜图.*", "getBaidPics");
+        invokeGroup.getInvokesAfter().put("百度搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
+
+        invokeGroup.getInvokes().put("堆糖搜图.*", "getDuitPics");
+        invokeGroup.getInvokesAfter().put("堆糖搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
+
+
     }
 
+    public static final Function2<User, Request, Result> fun2 = (user, request) -> {
+        String name = request.getStr().substring(request.getOStr().indexOf("."));
+        try {
+            String names = URLEncoder.encode(name, "utf-8");
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "baidu")));
+            ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
+            long id = request.getEvent().getBot().getId();
+            String nick = request.getEvent().getBot().getNick();
+            int i = 0;
+            for (Object s : jo.getJSONArray("data")) {
+                try {
+                    Image image = createImageInGroup(request.getEvent().getSubject(), s.toString());
+                    assert image != null;
+                    i++;
+                    builder.add(id, nick, image);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            request.getEvent().getSubject().sendMessage(builder.build());
+            return new Result(new Object[]{i}, 0);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return new Result(new Object[]{}, 1);
+    };
     public static final Function2<User, Request, Result> fun1 = (user, request) -> {
         String name = request.getStr().substring(request.getOStr().indexOf("."));
         try {
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names)));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "duit")));
             String picUrl = jo.getJSONArray("data").getString(0);
             return new Result(new Object[]{picUrl}, 0);
         } catch (UnsupportedEncodingException e) {
@@ -36,6 +79,55 @@ public class Loader {
         }
         return new Result(new Object[]{}, 1);
     };
+
+    public static final Function2<User, Request, Result> fun3 = (user, request) -> {
+        String name = request.getStr().substring(request.getOStr().indexOf("."));
+        try {
+            String names = URLEncoder.encode(name, "utf-8");
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "duit")));
+            ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
+            long id = request.getEvent().getBot().getId();
+            String nick = request.getEvent().getBot().getNick();
+            int i = 0;
+            for (Object s : jo.getJSONArray("data")) {
+                try {
+                    Image image = createImageInGroup(request.getEvent().getSubject(), s.toString());
+                    assert image != null;
+                    i++;
+                    builder.add(id, nick, image);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            request.getEvent().getSubject().sendMessage(builder.build());
+            return new Result(new Object[]{i}, 0);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return new Result(new Object[]{}, 1);
+    };
+
+    public static synchronized Image createImageInGroup(Contact group, String path) {
+        try {
+            if (path.startsWith("http")) {
+                return Contact.uploadImage(group, new URL(path).openStream());
+            } else if (path.startsWith("{")) {
+                return Image.fromId(path);
+            } else {
+                Image image = null;
+                image = Contact.uploadImage(group, new File(path));
+                return image;
+            }
+        } catch (IOException e) {
+            System.err.println(path + "加载重试");
+            try {
+                return Contact.uploadImage(group, new URL(path).openStream());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+                return null;
+            }
+        }
+    }
 
     public static final Runnable runnable = () -> {
         if (!Resource.conf.getInvokeGroups().containsKey("getPic"))
@@ -46,6 +138,8 @@ public class Loader {
         Resource.loadConfAfter.add(runnable);
 
         Methods.invokes.put("getPicOne", fun1);
+        Methods.invokes.put("getBaidPics", fun2);
+        Methods.invokes.put("getDuitPics", fun3);
 
         Resource.i1();
     }
