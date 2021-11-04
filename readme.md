@@ -28,6 +28,7 @@
 
 ### 请看配置文件
 
+[配置文件说明](https://github.com/Kloping/MiraiLsys/tree/master/conf)
 <details> 
 <summary>配置文件</summary> 
 

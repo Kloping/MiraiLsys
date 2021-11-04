@@ -71,8 +71,8 @@ hs_err_pid*
 
 /bots
 /cache
-/conf
 /config
 /data
 /plugins
 */test
+*.json
