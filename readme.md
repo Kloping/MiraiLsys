@@ -1,12 +1,11 @@
-#MiraiLsys
+# MiraiLsys
 
-###分离式插件 
-- 特点 
-  - 功能分离
-  - 配置齐全
-  - 扩展方便
+### 分离式插件
 
- 
+- 特点
+    - 功能分离
+    - 配置齐全
+    - 扩展方便
 
 主插件 : [a1-miraiLSys.jar](https://github.com/Kloping/MiraiLsys/releases/download/0.1/a1-miraiLSys.jar)
 
@@ -14,19 +13,21 @@
 
 主插件自带功能
 
-- 开关操作 
-  - 开启       #开启此群
-  - 关闭       #关闭此群
-  - 开启私聊    #开启所有的私聊
-  - 关闭私聊    #关闭所有私聊
+- 开关操作
+    - 开启 #开启此群
+    - 关闭 #关闭此群
+    - 开启私聊 #开启所有的私聊
+    - 关闭私聊 #关闭所有私聊
 - 积分相关
-  - 积分查询    #字意
-  - 查询积分     #字意
-  - 取积分 xx   #字意
-  - 存积分 xx   #字意
+    - 积分查询 #字意
+    - 查询积分 #字意
+    - 取积分 xx #字意
+    - 存积分 xx #字意
 
-###你以为就这就这了吗,不你错了
-###请看配置文件
+### 你以为就这就这了吗,不你错了
+
+### 请看配置文件
+
 ```json
 {
   "qq": -1,
@@ -88,20 +89,25 @@
 对的 全可配置 可修改 触发,相应词
 
 使用console命令
-####  /Lsys reload  #可重新加载配置
+
+#### /Lsys reload #可重新加载配置
 
 - 子插件
-  - 点歌的 [z2-Lsys-GetSong.jar ](https://github.com/Kloping/MiraiLsys/releases/download/0.1/z2-Lsys-GetSong.jar)
-    - 同样若无极端情况请不要修改文件名 否则将无法正常工作
-    - 其命令 在群里 发送 "点歌系统" 即可查看
-  - 发图的[z2-Lsys-GetSong.jar ](https://github.com/Kloping/MiraiLsys/releases/download/0.1/z1-Lsys-GetPic.jar)
-    - 同样若无极端情况请不要修改文件名 否则将无法正常工作
-    - 其命令 在群里 "发张 xxx" 即可 (后续更新更多)
+    - 点歌的 [z2-Lsys-GetSong.jar ](https://github.com/Kloping/MiraiLsys/releases/download/0.1/z2-Lsys-GetSong.jar)
+        - 同样若无极端情况请不要修改文件名 否则将无法正常工作
+        - 其命令 在群里 发送 "点歌系统" 即可查看
+    - 发图的[z2-Lsys-GetSong.jar ](https://github.com/Kloping/MiraiLsys/releases/download/0.1/z1-Lsys-GetPic.jar)
+        - 同样若无极端情况请不要修改文件名 否则将无法正常工作
+        - 其命令 在群里 "发张 xxx" 即可 (后续更新更多)
 
-#### 值得注意的是 若 未安装 主插件 
+#### 值得注意的是 若 未安装 主插件
+
 #### 则 孩子插件也将无效
+
 #### 且 配置文件也会多出 相关的信息
-例如 
+
+例如
+
 ```json
 {
   "qq": -1,
@@ -189,5 +195,6 @@
   ]
 }
 ```
+
 若你对该系统感兴趣 可联系我 <br>
 本人 QQ:[3474006766](http://wpa.qq.com/msgrd?v=3&uin=3474006766&site=qq&menu=yes)
