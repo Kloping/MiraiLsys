@@ -1,5 +1,6 @@
 package cn.kloping.lsys.getPic;
 
+import net.mamoe.mirai.console.command.CommandManager;
 import net.mamoe.mirai.console.extension.PluginComponentStorage;
 import net.mamoe.mirai.console.plugin.PluginManager;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
@@ -32,5 +33,6 @@ public class PluginMain extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("");
+        CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, true);
     }
 }

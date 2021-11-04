@@ -24,6 +24,7 @@ class CommandLine : SimpleCommand(
             }
             "clearHist" -> {
                 histMat.clear()
+                histMatO.clear()
                 println("已清除历史匹配")
             }
             "update" -> {

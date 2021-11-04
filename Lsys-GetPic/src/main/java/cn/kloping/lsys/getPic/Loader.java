@@ -16,14 +16,19 @@ import net.mamoe.mirai.message.data.Image;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Loader {
-    public static final String baseUrl = "http://49.232.209.180:20041/api/search/pic?keyword=%s&num=12&type=%s";
+    public static Conf conf = new Conf(0, 12);
+
+    public static final String baseUrl = "http://49.232.209.180:20041/api/search/pic?keyword=%s&num=%s&type=%s";
 
     public static final InvokeGroup invokeGroup = new InvokeGroup("getPic");
+
+    public static long cd = 0;
 
     static {
         invokeGroup.getInvokes().put("发张.*", "getPicOne");
@@ -38,14 +43,19 @@ public class Loader {
         invokeGroup.getInvokes().put("堆糖搜图.*", "getDuitPics");
         invokeGroup.getInvokesAfter().put("堆糖搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
 
-
+        conf = cn.kloping.initialize.FileInitializeValue.getValue("./conf/Lsys/lsys-getPic.json", conf, true);
     }
 
     public static final Function2<User, Request, Result> fun2 = (user, request) -> {
-        String name = request.getStr().substring(request.getOStr().indexOf("."));
         try {
+            if (cd > 0) {
+                System.err.println("冷却中...");
+                return null;
+            }
+            String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "baidu")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, conf.getNum(), "baidu")));
+            startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();
             String nick = request.getEvent().getBot().getNick();
@@ -62,29 +72,55 @@ public class Loader {
             }
             request.getEvent().getSubject().sendMessage(builder.build());
             return new Result(new Object[]{i}, 0);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new Result(new Object[]{}, 1);
     };
+
+    public static ExecutorService threads = Executors.newFixedThreadPool(2);
+
+    private static void startCd() {
+        if (conf.getCd() <= 0) return;
+        threads.execute(() -> {
+            try {
+                cd = conf.getCd();
+                Thread.sleep(cd);
+                cd = 0;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     public static final Function2<User, Request, Result> fun1 = (user, request) -> {
-        String name = request.getStr().substring(request.getOStr().indexOf("."));
         try {
+            if (cd > 0) {
+                System.err.println("冷却中...");
+                return null;
+            }
+            String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "1", "duit")));
             String picUrl = jo.getJSONArray("data").getString(0);
+            startCd();
             return new Result(new Object[]{picUrl}, 0);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new Result(new Object[]{}, 1);
     };
 
     public static final Function2<User, Request, Result> fun3 = (user, request) -> {
-        String name = request.getStr().substring(request.getOStr().indexOf("."));
         try {
+            if (cd > 0) {
+                System.err.println("冷却中...");
+                return null;
+            }
+            String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, conf.getNum(), "duit")));
+            startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();
             String nick = request.getEvent().getBot().getNick();
@@ -101,11 +137,12 @@ public class Loader {
             }
             request.getEvent().getSubject().sendMessage(builder.build());
             return new Result(new Object[]{i}, 0);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new Result(new Object[]{}, 1);
     };
+
 
     public static synchronized Image createImageInGroup(Contact group, String path) {
         try {
@@ -133,6 +170,14 @@ public class Loader {
         if (!Resource.conf.getInvokeGroups().containsKey("getPic"))
             Resource.conf.getInvokeGroups().put("getPic", invokeGroup);
     };
+
+    public static void loadConf() {
+        conf = cn.kloping.initialize.FileInitializeValue.getValue("./conf/Lsys/lsys-getPic.json", conf, true);
+    }
+
+    public static void applyConf() {
+        cn.kloping.initialize.FileInitializeValue.putValues("./conf/Lsys/lsys-getPic.json", conf);
+    }
 
     public static void load() {
         Resource.loadConfAfter.add(runnable);
