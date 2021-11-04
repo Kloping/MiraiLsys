@@ -102,7 +102,7 @@
 ## **子插件**
 
 - 点歌的 [z2-Lsys-GetSong ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetSong)
-- 发图的[z2-Lsys-GetSong ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetPic)
+- 发图的[z2-Lsys-GetPic ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetPic)
 
 (后续将继续更新)
 
