@@ -28,6 +28,9 @@
 
 ### 请看配置文件
 
+<details> 
+<summary>配置文件</summary> 
+
 ```json
 {
   "qq": -1,
@@ -86,27 +89,31 @@
 }
 ```
 
+</details>
+
+
 对的 全可配置 可修改 触发,相应词
 
 使用console命令
 
 #### /Lsys reload #可重新加载配置
 
-- 子插件
-    - 点歌的 [z2-Lsys-GetSong.jar ](https://github.com/Kloping/MiraiLsys/releases/download/0.1/z2-Lsys-GetSong.jar)
-        - 同样若无极端情况请不要修改文件名 否则将无法正常工作
-        - 其命令 在群里 发送 "点歌系统" 即可查看
-    - 发图的[z2-Lsys-GetSong.jar ](https://github.com/Kloping/MiraiLsys/releases/download/0.1/z1-Lsys-GetPic.jar)
-        - 同样若无极端情况请不要修改文件名 否则将无法正常工作
-        - 其命令 在群里 "发张 xxx" 即可 (后续更新更多)
+## **子插件**
+
+- 点歌的 [z2-Lsys-GetSong ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetSong)
+- 发图的[z2-Lsys-GetSong ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetPic)
+
+(后续将继续更新)
 
 #### 值得注意的是 若 未安装 主插件
 
-#### 则 孩子插件也将无效
+#### 则 子插件也将无效
 
-#### 且 配置文件也会多出 相关的信息
+#### 加载 子插件 配置文件也会多出 相关的信息
 
 例如
+<details> 
+<summary>配置文件</summary> 
 
 ```json
 {
@@ -195,6 +202,8 @@
   ]
 }
 ```
+
+</details>
 
 若你对该系统感兴趣 可联系我 <br>
 本人 QQ:[3474006766](http://wpa.qq.com/msgrd?v=3&uin=3474006766&site=qq&menu=yes)
