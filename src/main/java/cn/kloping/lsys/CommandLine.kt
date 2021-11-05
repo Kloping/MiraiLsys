@@ -17,18 +17,24 @@ class CommandLine : SimpleCommand(
 
     @Handler
     fun CommandSender.handle(arg: String) {
-        when (arg) {
-            "reload" -> {
+        when {
+            arg == "reload" -> {
                 i1()
                 println("已重新加载配置")
             }
-            "clearHist" -> {
+            arg == "clearHist" -> {
                 histMat.clear()
                 MethodName2Ostr.clear()
                 println("已清除历史匹配")
             }
-            "update" -> {
+            arg == "update" -> {
                 println("正在更新插件")
+            }
+            arg.startsWith("setMain=") -> {
+                val q = java.lang.Long.parseLong(arg.substring("setMain=".length))
+                Resource.conf.qq = q
+                Resource.conf.apply()
+                println("设置主任为 : ${q}")
             }
             else -> {
                 err.println(

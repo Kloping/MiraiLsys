@@ -4,7 +4,6 @@ import cn.kloping.lsys.Resource;
 import cn.kloping.lsys.entitys.InvokeGroup;
 import cn.kloping.lsys.entitys.Result;
 import cn.kloping.lsys.workers.Methods;
-import cn.kloping.url.UrlUtils;
 import com.alibaba.fastjson.JSON;
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.message.data.ForwardMessageBuilder;
@@ -16,6 +15,8 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static cn.kloping.url.UrlUtils.getStringFromHttpUrl;
 
 public class picParser {
 
@@ -106,7 +107,7 @@ public class picParser {
         try {
             String urlStr = String.format(urlParse, url, "ks");
             if (his.containsKey(urlStr)) return his.get(urlStr);
-            String jsonStr = new String(UrlUtils.getBytesFromHttpUrl(urlStr));
+            String jsonStr = getStringFromHttpUrl(urlStr);
             String[] urls = JSON.parseObject(jsonStr, String[].class);
             his.put(urlStr, urls);
             return urls;
@@ -120,7 +121,7 @@ public class picParser {
         try {
             String urlStr = String.format(urlParse, url, "dy");
             if (his.containsKey(urlStr)) return his.get(urlStr);
-            String jsonStr = new String(UrlUtils.getBytesFromHttpUrl(urlStr));
+            String jsonStr = getStringFromHttpUrl(urlStr);
             String[] urls = JSON.parseObject(jsonStr, String[].class);
             his.put(urlStr, urls);
             return urls;

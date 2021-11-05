@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 data class Conf(
     val path: String,
-    val qq: Number,
+    var qq: Number,
     var opens: Array<Number>,
     val invokeGroups: ConcurrentHashMap<String, InvokeGroup>,
     var prK: Boolean

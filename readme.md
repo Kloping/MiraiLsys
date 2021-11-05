@@ -100,12 +100,14 @@
 
 #### /Lsys reload #可重新加载配置
 
+#### /Lsys setMain=? #可设主人QQ
+
 ## **子插件**
 
 - 点歌的 [z2-Lsys-GetSong ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetSong)
 - 发图的[z2-Lsys-GetPic ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetPic)
 - 解析图片[Lsys-PicParser](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-PicParser)
-(后续将继续更新)
+  (后续将继续更新)
 
 #### 值得注意的是 若 未安装 主插件
 

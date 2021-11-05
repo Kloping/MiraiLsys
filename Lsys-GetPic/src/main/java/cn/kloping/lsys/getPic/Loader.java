@@ -54,7 +54,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, conf.getNum(), "baidu")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl( String.format(baseUrl, names, conf.getNum(), "baidu")));
             startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();
@@ -101,7 +101,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, "1", "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl( String.format(baseUrl, names, "1", "duit")));
             String picUrl = jo.getJSONArray("data").getString(0);
             startCd();
             return new Result(new Object[]{picUrl}, 0);
@@ -119,7 +119,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(false, String.format(baseUrl, names, conf.getNum(), "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl( String.format(baseUrl, names, conf.getNum(), "duit")));
             startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();

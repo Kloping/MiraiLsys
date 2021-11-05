@@ -108,7 +108,7 @@ public class Loader {
 
     public static JSONObject getSong(String keyword, String type) {
         String urlStr = String.format(baseUrl, keyword, type);
-        String jsonStr = UrlUtils.getStringFromHttpUrl(false, urlStr);
+        String jsonStr = UrlUtils.getStringFromHttpUrl(urlStr);
         return JSON.parseObject(jsonStr).getJSONArray("data").getJSONObject(0);
     }
 }
