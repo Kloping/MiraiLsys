@@ -31,15 +31,20 @@ class CommandLine : SimpleCommand(
                 println("正在更新插件")
             }
             arg.startsWith("setMain=") -> {
-                val q = java.lang.Long.parseLong(arg.substring("setMain=".length))
-                Resource.conf.qq = q
-                Resource.conf.apply()
-                println("设置主任为 : ${q}")
+                try {
+                    val q = java.lang.Long.parseLong(arg.substring("setMain=".length))
+                    Resource.conf.qq = q
+                    Resource.conf.apply()
+                    println("设置主任为 : ${q}")
+                } catch (e: Exception) {
+                    err.println("非数字")
+                }
             }
             else -> {
                 err.println(
                     "已知参数:\n" +
                             "reload\t#重新加载配置\n" +
+                            "setMain=\t#设置主q\n" +
                             "clearHist\t#清除历史匹配\n"
                 )
             }
