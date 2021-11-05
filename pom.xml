@@ -11,6 +11,8 @@
     <modules>
         <module>Lsys-GetPic</module>
         <module>Lsys-GetSong</module>
+        <module>Lsys-PartN</module>
+        <module>Lsys-PicParser</module>
     </modules>
 
     <properties>
@@ -23,7 +25,7 @@
         <dependency>
             <groupId>io.github.Kloping</groupId>
             <artifactId>JvUtils</artifactId>
-            <version>0.0.5</version>
+            <version>0.0.9</version>
         </dependency>
         <dependency>
             <groupId>net.mamoe</groupId>
