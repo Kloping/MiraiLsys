@@ -6,7 +6,7 @@ import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import org.jetbrains.annotations.NotNull;
 
-import static cn.kloping.lsys.picParser.ClassM.start;
+import static cn.kloping.lsys.picParser.picParser.start;
 
 public class PluginMain extends JavaPlugin {
     public static final PluginMain INSTANCE = new PluginMain();
