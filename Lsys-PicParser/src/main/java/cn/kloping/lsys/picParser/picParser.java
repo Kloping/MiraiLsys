@@ -2,6 +2,7 @@ package cn.kloping.lsys.picParser;
 
 import cn.kloping.lsys.Resource;
 import cn.kloping.lsys.entitys.InvokeGroup;
+import cn.kloping.lsys.entitys.Request;
 import cn.kloping.lsys.entitys.Result;
 import cn.kloping.lsys.workers.Methods;
 import com.alibaba.fastjson.JSON;
@@ -15,6 +16,8 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static cn.kloping.url.UrlUtils.getStringFromHttpUrl;
 
@@ -24,10 +27,10 @@ public class picParser {
         InvokeGroup invokeGroup = new InvokeGroup("picParser");
 
         invokeGroup.getInvokes().put("解析快手图片.*", "picParseGiftshow");
-        invokeGroup.getInvokesAfter().put("解析快手图片.*", new String[]{"<At = ?>\n解析到$1个结果", "解析失败"});
+        invokeGroup.getInvokesAfter().put("解析快手图片.*", new String[]{"<At = ?>\n解析到$1个结果", "只能解析图集或解析失败"});
 
         invokeGroup.getInvokes().put("解析抖音图片.*", "picParseDouy");
-        invokeGroup.getInvokesAfter().put("解析抖音图片.*", new String[]{"<At = ?>\n解析到$1个结果", "解析失败"});
+        invokeGroup.getInvokesAfter().put("解析抖音图片.*", new String[]{"<At = ?>\n解析到$1个结果", "只能解析图集或解析失败"});
 
         invokeGroup.getInvokes().put("发送第.*", "picParseGet");
         invokeGroup.getInvokesAfter().put("发送第.*", new String[]{"<At = ?>\n已发送$1", "您没有进行相关的搜索", "<At = ?>\n<Image = $1>"});
@@ -42,7 +45,7 @@ public class picParser {
 
         Methods.invokes.put("picParseGiftshow", (user, request) -> {
             try {
-                String url = request.getStr().substring(request.getOStr().indexOf("."));
+                String url = getUrl(request);
                 String[] strings = parseKsImgs(url);
                 searched.put(user.getQq().longValue(), strings);
                 return new Result(new Object[]{strings.length}, 0);
@@ -53,7 +56,7 @@ public class picParser {
         });
         Methods.invokes.put("picParseDouy", (user, request) -> {
             try {
-                String url = request.getStr().substring(request.getOStr().indexOf("."));
+                String url = getUrl(request);
                 String[] strings = parseDyImgs(url);
                 searched.put(user.getQq().longValue(), strings);
                 return new Result(new Object[]{strings.length}, 0);
@@ -95,6 +98,19 @@ public class picParser {
         });
 
         Resource.i1();
+    }
+
+    public static final Pattern pattern = Pattern.compile("http[a-zA-z/:.]*");
+
+    private static String getUrl(Request request) {
+        String url = request.getStr().substring(request.getOStr().indexOf("."));
+        try {
+            Matcher matcher = pattern.matcher(url);
+            if (matcher.find())
+                url = matcher.group().trim();
+        } catch (Exception e) {
+        }
+        return url;
     }
 
     public static final Map<Long, String[]> searched = new LinkedHashMap<>();
