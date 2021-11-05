@@ -105,7 +105,7 @@ public class picParser {
 
     public static String[] parseKsImgs(String url) {
         try {
-            String urlStr = String.format(urlParse, url, "ks");
+            String urlStr = String.format(urlParse, url.trim(), "ks");
             if (his.containsKey(urlStr)) return his.get(urlStr);
             String jsonStr = getStringFromHttpUrl(urlStr);
             String[] urls = JSON.parseObject(jsonStr, String[].class);
@@ -119,7 +119,7 @@ public class picParser {
 
     public static String[] parseDyImgs(String url) {
         try {
-            String urlStr = String.format(urlParse, url, "dy");
+            String urlStr = String.format(urlParse, url.trim(), "dy");
             if (his.containsKey(urlStr)) return his.get(urlStr);
             String jsonStr = getStringFromHttpUrl(urlStr);
             String[] urls = JSON.parseObject(jsonStr, String[].class);
