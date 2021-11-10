@@ -1,5 +1,44 @@
 # MiraiLsys
 
+<div class="BorderGrid-cell">
+              <h2 class="h4 mb-3">Languages</h2>
+<div class="mb-2">
+  <span data-view-component="true" class="Progress">
+    <span style="background-color:#b07219 !important;;width: 53.2%;" itemprop="keywords" aria-label="Java 53.2" data-view-component="true" class="Progress-item color-bg-success-inverse"></span>
+    <span style="background-color:#A97BFF !important;;width: 46.6%;" itemprop="keywords" aria-label="Kotlin 46.6" data-view-component="true" class="Progress-item color-bg-success-inverse"></span>
+    <span style="background-color:#C1F12E !important;;width: 0.2%;" itemprop="keywords" aria-label="Batchfile 0.2" data-view-component="true" class="Progress-item color-bg-success-inverse"></span>
+</span></div>
+<ul class="list-style-none">
+    <li class="d-inline">
+      <a class="d-inline-flex flex-items-center flex-nowrap Link--secondary no-underline text-small mr-3" href="/Kloping/MiraiLsys/search?l=java" data-ga-click="Repository, language stats search click, location:repo overview">
+        <svg style="color:#b07219;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-dot-fill mr-2">
+    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
+</svg>
+        <span class="color-fg-default text-bold mr-1">Java</span>
+        <span>53.2%</span>
+      </a>
+    </li>
+    <li class="d-inline">
+      <a class="d-inline-flex flex-items-center flex-nowrap Link--secondary no-underline text-small mr-3" href="/Kloping/MiraiLsys/search?l=kotlin" data-ga-click="Repository, language stats search click, location:repo overview">
+        <svg style="color:#A97BFF;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-dot-fill mr-2">
+    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
+</svg>
+        <span class="color-fg-default text-bold mr-1">Kotlin</span>
+        <span>46.6%</span>
+      </a>
+    </li>
+    <li class="d-inline">
+      <a class="d-inline-flex flex-items-center flex-nowrap Link--secondary no-underline text-small mr-3" href="/Kloping/MiraiLsys/search?l=batchfile" data-ga-click="Repository, language stats search click, location:repo overview">
+        <svg style="color:#C1F12E;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-dot-fill mr-2">
+    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
+</svg>
+        <span class="color-fg-default text-bold mr-1">Batchfile</span>
+        <span>0.2%</span>
+      </a>
+    </li>
+</ul>
+</div>
+
 ### 分离式插件
 
 - 特点
