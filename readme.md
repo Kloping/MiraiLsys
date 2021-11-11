@@ -107,7 +107,8 @@
 - 点歌的 [z2-Lsys-GetSong ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetSong)
 - 发图的[z2-Lsys-GetPic ](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-GetPic)
 - 解析图片[Lsys-PicParser](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-PicParser)
-  (后续将继续更新)
+- 积分相关操作的1[Lsys-Score1](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-Score1)
+- (后续将继续更新)
 
 #### 值得注意的是 若 未安装 主插件
 
