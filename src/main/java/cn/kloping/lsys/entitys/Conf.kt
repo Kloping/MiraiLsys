@@ -49,6 +49,6 @@ data class Conf(
     }
 
     override fun apply() {
-        FileInitializeValue.putValues("./conf/LSys/conf.json", Resource.conf)
+        FileInitializeValue.putValues("./conf/LSys/conf.json", Resource.conf, true)
     }
 }

@@ -4,8 +4,8 @@ import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.Resource.i1
 import cn.kloping.lsys.utils.toText
 import net.mamoe.mirai.console.command.CommandManager
-import net.mamoe.mirai.console.plugin.jvm.JavaPlugin
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder
+import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.EventHandler
 import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.SimpleListenerHost
@@ -16,13 +16,17 @@ import kotlin.coroutines.CoroutineContext
 /**
  * @Author hrs 3474006766@qq.com
  */
-class PluginMain : JavaPlugin(
-    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.1")
-        .name("插件_ Author => HRS LSys Loaded")
-        .info("插件")
-        .author("HRS")
-        .build()
-) {
+class PluginMain : KotlinPlugin {
+
+    constructor() : super(
+        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2")
+            .name("插件_ Author => HRS LSys Loaded")
+            .info("插件")
+            .author("HRS")
+            .build().apply {
+            }
+    )
+
     override fun onEnable() {
         logger.info("HRS's LSys Plugin loaded! @作者:qq-3474006766")
         i1();
@@ -45,6 +49,7 @@ class PluginMain : JavaPlugin(
                     handMessage(text, event)
             }
         })
+
     }
 
     companion object {

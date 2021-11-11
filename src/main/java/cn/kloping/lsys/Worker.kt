@@ -60,7 +60,7 @@ suspend fun run(str: String, event: MessageEvent) {
     methodName?.apply {
         invokes[this]?.apply {
             val r1 = Request(str, text, event.sender.id, event.subject.id, event, null)
-            val res = this(PutGetter.get(event.sender.id), r1)
+            val res = this(PutGetter.get(event.sender.id, true), r1)
             res?.let {
                 var resText = conf.invokesAfter[text]?.get(it.state)
                 resText!!.apply {

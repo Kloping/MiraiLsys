@@ -1,6 +1,7 @@
 package cn.kloping.lsys.workers
 
 import cn.kloping.lsys.Resource
+import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.entitys.Request
 import cn.kloping.lsys.entitys.Result
 import cn.kloping.lsys.entitys.User
@@ -133,5 +134,17 @@ object Methods {
             Result(null, 0)
         } else
             null
+    }
+
+    @JvmField
+    val menuN: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
+        val sb = StringBuilder()
+        var n = 1;
+        for (e in conf.invokes.keys()) {
+            var e1 = if (e.endsWith(".*")) e.replace(".*", " (参数)") else e
+            sb.append(n).append(".").append(e1).append("\n")
+            n++
+        }
+        Result(arrayOf(sb.toString()), 0)
     }
 }

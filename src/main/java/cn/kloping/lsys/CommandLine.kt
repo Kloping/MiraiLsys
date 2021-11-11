@@ -20,6 +20,9 @@ class CommandLine : SimpleCommand(
         when {
             arg == "reload" -> {
                 i1()
+                histMat.clear()
+                MethodName2Ostr.clear()
+                println("已清除历史匹配")
                 println("已重新加载配置")
             }
             arg == "clearHist" -> {

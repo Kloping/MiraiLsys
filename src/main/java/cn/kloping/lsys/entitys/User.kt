@@ -4,13 +4,29 @@ import cn.kloping.lsys.savers.PutGetter.save
 
 
 data class User(
+    /**
+     * qq
+     */
     val qq: Number,
+    /**
+     * 积分
+     */
     var p: Long,
+    /**
+     * 存的积分
+     */
     var p2: Long,
+    /**
+     * 犯罪指数
+     */
     var pf: Long,
+    /**
+     * 上次注册天
+     */
+    var ur: Int
 ) : Entity {
 
-    constructor() : this(-1, 0, 0, 0)
+    constructor() : this(-1, 0, 0, 0, 0)
 
     fun getP2(n: Long): Boolean {
         if (n <= this.p2) {
@@ -30,6 +46,21 @@ data class User(
             return true
         }
         return false
+    }
+
+    fun addP(n: Number): User {
+        p += n.toLong()
+        return this;
+    }
+
+    fun addP2(n: Number): User {
+        p2 += n.toLong();
+        return this;
+    }
+
+    fun addPf(n: Int): User {
+        pf += n
+        return this;
     }
 
     override fun apply() {

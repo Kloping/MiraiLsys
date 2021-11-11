@@ -21,6 +21,8 @@ import java.net.URLEncoder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static cn.kloping.lsys.utils.MessageUtils.createImageInGroup;
+
 public class Loader {
     public static Conf conf = new Conf(0, 12);
 
@@ -54,7 +56,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl( String.format(baseUrl, names, conf.getNum(), "baidu")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(baseUrl, names, conf.getNum(), "baidu")));
             startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();
@@ -101,7 +103,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl( String.format(baseUrl, names, "1", "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(baseUrl, names, "1", "duit")));
             String picUrl = jo.getJSONArray("data").getString(0);
             startCd();
             return new Result(new Object[]{picUrl}, 0);
@@ -119,7 +121,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl( String.format(baseUrl, names, conf.getNum(), "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(baseUrl, names, conf.getNum(), "duit")));
             startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();
@@ -144,27 +146,27 @@ public class Loader {
     };
 
 
-    public static synchronized Image createImageInGroup(Contact group, String path) {
-        try {
-            if (path.startsWith("http")) {
-                return Contact.uploadImage(group, new URL(path).openStream());
-            } else if (path.startsWith("{")) {
-                return Image.fromId(path);
-            } else {
-                Image image = null;
-                image = Contact.uploadImage(group, new File(path));
-                return image;
-            }
-        } catch (IOException e) {
-            System.err.println(path + "加载重试");
-            try {
-                return Contact.uploadImage(group, new URL(path).openStream());
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-                return null;
-            }
-        }
-    }
+//    public static synchronized Image createImageInGroup(Contact group, String path) {
+//        try {
+//            if (path.startsWith("http")) {
+//                return Contact.uploadImage(group, new URL(path).openStream());
+//            } else if (path.startsWith("{")) {
+//                return Image.fromId(path);
+//            } else {
+//                Image image = null;
+//                image = Contact.uploadImage(group, new File(path));
+//                return image;
+//            }
+//        } catch (IOException e) {
+//            System.err.println(path + "加载重试");
+//            try {
+//                return Contact.uploadImage(group, new URL(path).openStream());
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//                return null;
+//            }
+//        }
+//    }
 
     public static final Runnable runnable = () -> {
         if (!Resource.conf.getInvokeGroups().containsKey("getPic"))
@@ -176,7 +178,7 @@ public class Loader {
     }
 
     public static void applyConf() {
-        cn.kloping.initialize.FileInitializeValue.putValues("./conf/Lsys/lsys-getPic.json", conf);
+        cn.kloping.initialize.FileInitializeValue.putValues("./conf/Lsys/lsys-getPic.json", conf, true);
     }
 
     public static void load() {

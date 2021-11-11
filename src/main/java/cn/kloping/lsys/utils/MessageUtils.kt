@@ -1,11 +1,14 @@
 package cn.kloping.lsys.utils
 
+import cn.kloping.lsys.entitys.Request
+import kotlinx.coroutines.runBlocking
 import net.mamoe.mirai.contact.Contact
 import net.mamoe.mirai.contact.Contact.Companion.uploadImage
 import net.mamoe.mirai.message.data.*
 import java.io.File
 import java.io.IOException
 import java.net.URL
+import java.util.*
 
 fun toText(chain: MessageChain): String {
     val sb = StringBuilder();
@@ -35,23 +38,43 @@ fun toText(chain: MessageChain): String {
     return sb.toString();
 }
 
-object MessageUtils {
+public object MessageUtils {
+
+    @JvmField
+    public val random = Random();
 
     @JvmStatic
-    suspend fun createImageInGroup(group: Contact, path: String): Image? {
+    fun createImageInGroup(group: Contact, path: String): Image? {
         return try {
             if (path.startsWith("http")) {
-                group.uploadImage(URL(path).openStream())
+                runBlocking { group.uploadImage(URL(path).openStream()) }
             } else if (path.startsWith("{")) {
                 Image.fromId(path)
             } else {
-                group.uploadImage(File(path))
+                runBlocking { group.uploadImage(File(path)) }
             }
         } catch (e: IOException) {
             e.printStackTrace()
             System.err.println(path + "加载失败")
             null
         }
+    }
+
+    @JvmStatic
+    fun getAtFromRequest(request: Request): Long {
+        for (m in request.event.message) {
+            if (m is At) return m.target;
+        }
+        return -1;
+    }
+
+    @JvmStatic
+    fun getAllAtFromRequest(request: Request): Array<Long> {
+        var list = emptyArray<Long>()
+        for (m in request.event.message) {
+            if (m is At) list = list.plus(m.target)
+        }
+        return list
     }
 
 }

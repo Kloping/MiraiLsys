@@ -25,6 +25,7 @@ object Resource {
             put("关闭", "mClose")
             put("开启私聊", "mpOpen")
             put("关闭私聊", "mpClose")
+            put("菜单", "menuN")
         }
 
         val invokesAfter = ConcurrentHashMap<String, Array<String>>().apply {
@@ -36,6 +37,7 @@ object Resource {
             put("关闭", arrayOf("<At = ?>\n关闭成功", "<At = ?>\n本就是关闭"))
             put("开启私聊", arrayOf("<At = ?>\n开启成功"))
             put("关闭私聊", arrayOf("<At = ?>\n关闭成功"))
+            put("菜单", arrayOf("<At = ?>\n$1"))
         }
 
         val invokeGroup = InvokeGroup("main").apply {

@@ -19,13 +19,35 @@ object PutGetter {
     }
 
     @JvmStatic
-    fun get(q: Long): User {
+            /**
+             * 获取某人的信息 若不存在 则返回 null
+             */
+    fun get(q: Long): User? {
         if (histUser.containsKey(q))
             return histUser[q]!!
         val user: User
         val str = FileUtils.getStringFromFile(File(conf.path, "$q/data").path);
-        if (str.isNullOrBlank()) {
-            user = User(q, 1000, 200, 0)
+
+        if (!str.isNullOrBlank()) {
+            val jo: JSONObject = JSON.parseObject(str);
+            user = jo.toJavaObject(Class.forName("cn.kloping.lsys.entitys.User")) as User
+            histUser[user.qq.toLong()] = user
+            return user;
+        }
+        return null
+    }
+
+    @JvmStatic
+            /**
+             * k: 是否强制生成
+             */
+    fun get(q: Long, k: Boolean): User {
+        if (histUser.containsKey(q))
+            return histUser[q]!!
+        val user: User
+        val str = FileUtils.getStringFromFile(File(conf.path, "$q/data").path);
+        if (str.isNullOrBlank() && k) {
+            user = User(q, 1000, 200, 0, 0)
             user.apply()
         } else {
             val jo: JSONObject = JSON.parseObject(str);
@@ -34,4 +56,5 @@ object PutGetter {
         histUser[user.qq.toLong()] = user
         return user;
     }
+
 }
