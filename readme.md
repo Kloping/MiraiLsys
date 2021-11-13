@@ -7,7 +7,7 @@
     - 配置齐全
     - 扩展方便
 
-主插件 : [a1-miraiLSys.jar](https://github.com/Kloping/MiraiLsys/releases/download/0.2/a1-miraiLSys.jar)
+主插件 : [a1-miraiLSys.jar](https://github.com/Kloping/MiraiLsys/releases/)
 
 若无极端情况 请不要修改 文件名 否则将无法正常工作
 
