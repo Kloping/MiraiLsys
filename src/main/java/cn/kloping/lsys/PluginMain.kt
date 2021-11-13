@@ -3,6 +3,8 @@ package cn.kloping.lsys
 import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.Resource.i1
 import cn.kloping.lsys.utils.toText
+import net.mamoe.mirai.console.ConsoleFrontEndImplementation
+import net.mamoe.mirai.console.MiraiConsoleImplementation
 import net.mamoe.mirai.console.command.CommandManager
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
@@ -19,7 +21,7 @@ import kotlin.coroutines.CoroutineContext
 class PluginMain : KotlinPlugin {
 
     constructor() : super(
-        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2")
+        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.2")
             .name("插件_ Author => HRS LSys Loaded")
             .info("插件")
             .author("HRS")
@@ -27,8 +29,11 @@ class PluginMain : KotlinPlugin {
             }
     )
 
+    @OptIn(ConsoleFrontEndImplementation::class)
     override fun onEnable() {
         logger.info("HRS's LSys Plugin loaded! @作者:qq-3474006766")
+        Resource.rootPath = MiraiConsoleImplementation.getInstance().rootPath.toFile().absolutePath
+//        if (Resource.rootPath.startsWith("/storage/emulated/0/Android")) Resource.rootPath = "/sdcard";
         i1();
         CommandManager.registerCommand(CommandLine.INSTANCE)
         GlobalEventChannel.registerListenerHost(object : SimpleListenerHost() {

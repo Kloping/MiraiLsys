@@ -4,6 +4,7 @@ import cn.kloping.initialize.FileInitializeValue
 import cn.kloping.lsys.entitys.Conf
 import cn.kloping.lsys.entitys.InvokeGroup
 import cn.kloping.lsys.workers.Methods
+import net.mamoe.mirai.console.ConsoleFrontEndImplementation
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
@@ -48,18 +49,26 @@ object Resource {
         val invokeGroupMap = ConcurrentHashMap<String, InvokeGroup>().apply {
             put(invokeGroup.id, invokeGroup)
         }
-        conf = Conf("./data/LSys", -1, arrayOf(-1), invokeGroupMap, false)
+        conf = Conf("$rootPath/data/LSys", -1, arrayOf(-1), invokeGroupMap, false)
     }
 
+    @JvmField
+    var rootPath = "."
+
+    @OptIn(ConsoleFrontEndImplementation::class)
     @JvmStatic
     fun i1() {
-        if (!File("./conf/LSys/conf.json").exists()) before()
-        else conf = FileInitializeValue.getValue("./conf/LSys/conf.json", conf, true);
+        if (!File("$rootPath/", "conf/LSys/conf.json").exists()) {
+            File("$rootPath/", "conf/LSys/conf.json").parentFile.mkdirs()
+            File("$rootPath/", "conf/LSys/conf.json").createNewFile()
+            before()
+        } else conf = FileInitializeValue.getValue(
+            File("$rootPath/", "conf/LSys/conf.json").absolutePath, conf, true
+        )
         for (r in loadConfAfter) r.run()
-        conf.let {
-            it.load()
-            it.apply()
-            Methods.init()
-        }
+        conf.load()
+        conf.apply()
+        Methods.init()
+        PluginMain.INSTANCE.logger.info("Lsys-工作目录: $rootPath")
     }
 }
