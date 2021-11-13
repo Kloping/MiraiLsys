@@ -45,7 +45,7 @@ public class Loader {
         invokeGroup.getInvokes().put("堆糖搜图.*", "getDuitPics");
         invokeGroup.getInvokesAfter().put("堆糖搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
 
-        conf = cn.kloping.initialize.FileInitializeValue.getValue("./conf/Lsys/lsys-getPic.json", conf, true);
+        conf = cn.kloping.initialize.FileInitializeValue.getValue(Resource.rootPath+"/conf/Lsys/lsys-getPic.json", conf, true);
     }
 
     public static final Function2<User, Request, Result> fun2 = (user, request) -> {

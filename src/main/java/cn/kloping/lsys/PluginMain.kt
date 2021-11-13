@@ -32,8 +32,6 @@ class PluginMain : KotlinPlugin {
     @OptIn(ConsoleFrontEndImplementation::class)
     override fun onEnable() {
         logger.info("HRS's LSys Plugin loaded! @作者:qq-3474006766")
-        Resource.rootPath = MiraiConsoleImplementation.getInstance().rootPath.toFile().absolutePath
-//        if (Resource.rootPath.startsWith("/storage/emulated/0/Android")) Resource.rootPath = "/sdcard";
         i1();
         CommandManager.registerCommand(CommandLine.INSTANCE)
         GlobalEventChannel.registerListenerHost(object : SimpleListenerHost() {
