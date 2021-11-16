@@ -83,11 +83,11 @@ public class Methods {
             case 0:
                 return new Result(new Object[]{m2.getValue()}, 2);
             case -1:
-                user.addP(num);
+                user.addP(-num);
                 user.apply();
                 return new Result(new Object[]{m2.getValue(), num}, 1);
             case 1:
-                user.addP(-num);
+                user.addP(num);
                 user.apply();
                 return new Result(new Object[]{m2.getValue(), num}, 0);
         }
