@@ -14,6 +14,7 @@
         <module>Lsys-PartN</module>
         <module>Lsys-PicParser</module>
         <module>Lsys-Score1</module>
+        <module>Lsys-Score2</module>
     </modules>
 
     <properties>

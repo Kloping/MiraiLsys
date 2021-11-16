@@ -147,26 +147,4 @@ public class picParser {
         }
         return null;
     }
-
-//    public static synchronized Image createImageInGroup(Contact group, String path) {
-//        try {
-//            if (path.startsWith("http")) {
-//                return Contact.uploadImage(group, new URL(path).openStream());
-//            } else if (path.startsWith("{")) {
-//                return Image.fromId(path);
-//            } else {
-//                Image image = null;
-//                image = Contact.uploadImage(group, new File(path));
-//                return image;
-//            }
-//        } catch (IOException e) {
-//            System.err.println(path + "加载重试");
-//            try {
-//                return Contact.uploadImage(group, new URL(path).openStream());
-//            } catch (IOException ioException) {
-//                ioException.printStackTrace();
-//                return null;
-//            }
-//        }
-//    }
 }

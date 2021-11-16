@@ -9,6 +9,29 @@ import cn.kloping.number.NumberUtils
 import java.util.concurrent.ConcurrentHashMap
 
 object Methods {
+
+    @JvmField
+    val state0 = Result(arrayOf(), 0)
+
+    @JvmField
+    val state1 = Result(arrayOf(), 1)
+
+    @JvmField
+    val state2 = Result(arrayOf(), 2)
+
+    @JvmField
+    val state3 = Result(arrayOf(), 3)
+
+    @JvmField
+    val state4 = Result(arrayOf(), 4)
+
+    @JvmField
+    val state5 = Result(arrayOf(), 5)
+
+    @JvmField
+    val state6 = Result(arrayOf(), 6)
+
+
     @JvmField
     public val invokes = ConcurrentHashMap<String, (arg: User, args: Request?) -> Result?>();
 
@@ -71,12 +94,11 @@ object Methods {
     val mOpen: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
         val gq: Number = any?.gId!!
         if (user.qq == Resource.conf.qq) {
-            if (Resource.conf.opens.contains(gq)) {
-                Result(null, 1)
-            } else {
-                Resource.conf.opens = Resource.conf.opens.plusElement(gq)
+            if (conf.opens.add(gq)) {
                 Resource.conf.apply()
                 Result(null, 0)
+            } else {
+                Result(null, 1)
             }
         } else {
             null
@@ -91,17 +113,20 @@ object Methods {
         val gq: Number = any?.gId!!
         if (user.qq == Resource.conf.qq) {
             if (Resource.conf.opens.contains(gq)) {
-                Resource.conf.opens = Resource.conf.opens.apply {
-                    for ((i, gi) in this.withIndex()) {
-                        when (gi) {
-                            gq -> {
-                                this.drop(i)
-                                break
+                /*    Resource.conf.opens = Resource.conf.opens.apply {
+                        for ((i, gi) in this.withIndex()) {
+                            when (gi) {
+                                gq -> {
+                                    this.drop(i)
+                                    break
+                                }
                             }
                         }
                     }
-                }
-                Resource.conf.apply()
+                    Resource.conf.apply()
+                */
+                conf.opens.remove(gq);
+                conf.apply();
                 Result(null, 0)
             } else {
                 Result(null, 1)

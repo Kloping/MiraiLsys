@@ -50,7 +50,7 @@ object Resource {
         val invokeGroupMap = ConcurrentHashMap<String, InvokeGroup>().apply {
             put(invokeGroup.id, invokeGroup)
         }
-        conf = Conf("$rootPath/data/LSys", -1, arrayOf(-1), invokeGroupMap, false)
+        conf = Conf("$rootPath/data/LSys", -1, HashSet(), invokeGroupMap, false)
     }
 
     @OptIn(ConsoleFrontEndImplementation::class)

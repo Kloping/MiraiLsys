@@ -14,14 +14,9 @@ import kotlin.jvm.functions.Function2;
 import java.io.*;
 
 import static cn.kloping.lsys.utils.MessageUtils.random;
+import static cn.kloping.lsys.workers.Methods.*;
 
 public class Methods {
-    public static final Result state1 = new Result(new Object[]{}, 1);
-    public static final Result state2 = new Result(new Object[]{}, 2);
-    public static final Result state3 = new Result(new Object[]{}, 3);
-    public static final Result state4 = new Result(new Object[]{}, 4);
-    public static final Result state5 = new Result(new Object[]{}, 5);
-
     public static final Function2<User, Request, Result> rob = (user, request) -> {
         long q2 = MessageUtils.getAtFromRequest(request);
         if (q2 == -1) return state1;
@@ -87,11 +82,11 @@ public class Methods {
         switch (m1.Reff(m2)) {
             case 0:
                 return new Result(new Object[]{m2.getValue()}, 2);
-            case 1:
+            case -1:
                 user.addP(num);
                 user.apply();
                 return new Result(new Object[]{m2.getValue(), num}, 1);
-            case -1:
+            case 1:
                 user.addP(-num);
                 user.apply();
                 return new Result(new Object[]{m2.getValue(), num}, 0);
