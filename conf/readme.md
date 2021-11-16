@@ -1,4 +1,7 @@
 ### 配置文件说明
+<details> 
+<summary>  配置文件说明</summary> 
+
 
 ```json
 {
@@ -68,11 +71,12 @@
 }
 ```
 
+</details>
 
 - 若修改其响应词 直接修改 并重新加载配置即可
 - 若想修改触发词 修改 invokes key 值 必须 同时 <br> 将 invokesAfter key 值 改为相同的值
 例如:
-- <details> 
+ <details> 
 <summary>修改示例</summary> 
 
 
@@ -135,4 +139,4 @@
 }
 ```
 
-<details/>
+</details>
