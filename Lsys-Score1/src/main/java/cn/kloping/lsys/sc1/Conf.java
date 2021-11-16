@@ -14,6 +14,14 @@ public class Conf {
         this.ob = ob;
     }
 
+    public int getWin() {
+        return win;
+    }
+
+    public int getOb() {
+        return ob;
+    }
+
     public void apply() {
         cn.kloping.initialize.FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/sc1.json", this, true);
     }

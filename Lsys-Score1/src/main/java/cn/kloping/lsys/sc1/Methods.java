@@ -13,6 +13,7 @@ import kotlin.jvm.functions.Function2;
 
 import java.io.*;
 
+import static cn.kloping.lsys.sc1.sc1.conf;
 import static cn.kloping.lsys.utils.MessageUtils.random;
 import static cn.kloping.lsys.workers.Methods.*;
 
@@ -77,7 +78,7 @@ public class Methods {
         if (user.getP() < num)
             return state3;
         Mora m1 = Mora.findMora(str, 0);
-        Mora m2 = Mora.getRc(40, 20, m1);
+        Mora m2 = Mora.getRc(conf.getWin(), conf.getOb(), m1);
         assert m1 != null;
         switch (m1.Reff(m2)) {
             case 0:
