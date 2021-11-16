@@ -31,7 +31,7 @@ public class PluginMain extends JavaPlugin {
             return;
         }
         try {
-            CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, true);
+            CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, false);
             start();
         } catch (Exception e) {
             e.printStackTrace();
