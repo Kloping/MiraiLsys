@@ -1,6 +1,7 @@
 package cn.kloping.lsys.sc1;
 
 import com.sun.istack.internal.NotNull;
+import net.mamoe.mirai.console.command.CommandManager;
 import net.mamoe.mirai.console.extension.PluginComponentStorage;
 import net.mamoe.mirai.console.plugin.PluginManager;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
@@ -30,6 +31,7 @@ public class PluginMain extends JavaPlugin {
             return;
         }
         try {
+            CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, true);
             start();
         } catch (Exception e) {
             e.printStackTrace();

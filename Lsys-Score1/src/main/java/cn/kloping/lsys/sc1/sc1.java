@@ -7,7 +7,10 @@ import cn.kloping.lsys.workers.Methods;
 import static cn.kloping.lsys.sc1.Methods.*;
 
 public class sc1 {
+    public static Conf conf = new Conf();
     public static void start() {
+        conf = cn.kloping.initialize.FileInitializeValue.getValue(Resource.rootPath+"/conf/Lsys/sc1.json", conf, true);
+
         InvokeGroup invokeGroup = new InvokeGroup("sco1");
 
         invokeGroup.getInvokes().put("打劫.*", "rob");

@@ -68,7 +68,7 @@ public class Methods {
         int num = 0;
         try {
             num = Integer.parseInt(NumberUtils.findNumberFromString(str));
-            if (mora.findMora(str, 0) == null) throw new Exception();
+            if (Mora.findMora(str, 0) == null) throw new Exception();
         } catch (Exception e) {
             return state5;
         }
@@ -76,8 +76,8 @@ public class Methods {
             return new Result(new Object[]{5, 2000}, 4);
         if (user.getP() < num)
             return state3;
-        mora m1 = mora.findMora(str, 0);
-        mora m2 = mora.getRc();
+        Mora m1 = Mora.findMora(str, 0);
+        Mora m2 = Mora.getRc(40, 20, m1);
         assert m1 != null;
         switch (m1.Reff(m2)) {
             case 0:
