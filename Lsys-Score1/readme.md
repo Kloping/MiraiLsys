@@ -1,6 +1,6 @@
 ### MiraiLsys 子插件
 
-###积分相关的操作
+### 积分相关的操作
 下载
 
 - 积分相关的 [z4-Lsys-Score1.jar ](https://github.com/Kloping/MiraiLsys/releases)

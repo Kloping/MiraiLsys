@@ -1,6 +1,6 @@
 ### MiraiLsys 子插件
 
-###积分相关的操作
+### 积分相关的操作
 下载
 
 - 积分相关的 [z5-Lsys-Score2 ](https://github.com/Kloping/MiraiLsys/releases)

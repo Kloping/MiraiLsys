@@ -1,6 +1,6 @@
 ### MiraiLsys 子插件
 
-###点歌 
+### 点歌 
 下载
 
 - 点歌的 [z2-Lsys-GetSong.jar ](https://github.com/Kloping/MiraiLsys/releases/)
