@@ -31,7 +31,6 @@ public class PluginMain extends JavaPlugin {
             return;
         }
         try {
-            CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, false);
             start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,5 +40,6 @@ public class PluginMain extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("");
+        CommandManager.INSTANCE.registerCommand(CommandLine.INSTANCE, false);
     }
 }
