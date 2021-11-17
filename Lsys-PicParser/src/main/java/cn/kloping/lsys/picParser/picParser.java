@@ -6,13 +6,10 @@ import cn.kloping.lsys.entitys.Request;
 import cn.kloping.lsys.entitys.Result;
 import cn.kloping.lsys.workers.Methods;
 import com.alibaba.fastjson.JSON;
-import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.message.data.ForwardMessageBuilder;
 import net.mamoe.mirai.message.data.Image;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -101,7 +98,7 @@ public class picParser {
         Resource.i1();
     }
 
-    public static final Pattern pattern = Pattern.compile("http[a-zA-z/:.]*");
+    public static final Pattern pattern = Pattern.compile("http[a-zA-Z0-9/:.]*");
 
     private static String getUrl(Request request) {
         String url = request.getStr().substring(request.getOStr().indexOf("."));
@@ -111,7 +108,7 @@ public class picParser {
                 url = matcher.group().trim();
         } catch (Exception e) {
         }
-        return url;
+        return url.trim();
     }
 
     public static final Map<Long, String[]> searched = new LinkedHashMap<>();
@@ -146,5 +143,9 @@ public class picParser {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(parseKsImgs("https://v.kuaishouapp.com/s/Gbua6Ivl")));
     }
 }
