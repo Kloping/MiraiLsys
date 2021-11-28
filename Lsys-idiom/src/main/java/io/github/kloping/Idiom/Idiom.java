@@ -23,6 +23,9 @@ public abstract class Idiom {
 
     public Idiom(int maxFailed) {
         this.maxFailed = maxFailed;
+        upWord = getRandom();
+        upPinyin = getEndPinyin(upWord);
+        hist.add(upWord);
     }
 
     private int maxFailed = 5;
@@ -63,6 +66,14 @@ public abstract class Idiom {
         return upPinyin;
     }
 
+    public int getMaxFailed() {
+        return maxFailed;
+    }
+
+    public void setMaxFailed(int maxFailed) {
+        this.maxFailed = maxFailed;
+    }
+
     static Response request(String arg) {
         String str = UrlUtils.getStringFromHttpUrl("http://49.232.209.180:20041/api/get/idiom?word=" + URLEncoder.encode(arg));
         return JSON.parseObject(str).toJavaObject(Response.class);
@@ -75,7 +86,9 @@ public abstract class Idiom {
     static String getStartPinyin(Response response) {
         String s = response.getPinyin()[0];
         return s.replaceAll("[0-9]", "");
-    } static String getStartPinyin(String arg) {
+    }
+
+    static String getStartPinyin(String arg) {
         String str = UrlUtils.getStringFromHttpUrl("http://49.232.209.180:20041/api/get/idiom?word=" + URLEncoder.encode(arg));
         Response response = JSON.parseObject(str).toJavaObject(Response.class);
         String s = response.getPinyin()[0];

@@ -77,7 +77,7 @@ public class Worker {
             games.put(gid, idiom);
             return new Result(new Object[]{
                     idiom.getHist().size()
-                    , idiom.getUpWord()
+                    , idiom.getUpWord().trim()
                     , idiom.getUpPinyin()
             }, 1);
         }
