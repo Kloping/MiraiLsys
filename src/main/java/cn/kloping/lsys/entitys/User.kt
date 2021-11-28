@@ -2,7 +2,6 @@ package cn.kloping.lsys.entitys
 
 import cn.kloping.lsys.savers.PutGetter.save
 
-
 data class User(
     /**
      * qq

@@ -1,11 +1,11 @@
 package cn.kloping.lsys.sc2;
 
-import cn.kloping.judge.Judge;
 import cn.kloping.lsys.entitys.Request;
 import cn.kloping.lsys.entitys.Result;
 import cn.kloping.lsys.entitys.User;
 import cn.kloping.lsys.utils.MessageUtils;
-import cn.kloping.number.NumberUtils;
+import io.github.kloping.judge.Judge;
+import io.github.kloping.number.NumberUtils;
 import kotlin.jvm.functions.Function2;
 
 import static cn.kloping.lsys.savers.PutGetter.get;

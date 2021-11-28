@@ -1,9 +1,9 @@
 package cn.kloping.lsys
 
-import cn.kloping.initialize.FileInitializeValue
 import cn.kloping.lsys.entitys.Conf
 import cn.kloping.lsys.entitys.InvokeGroup
 import cn.kloping.lsys.workers.Methods
+import io.github.kloping.initialize.FileInitializeValue
 import net.mamoe.mirai.console.ConsoleFrontEndImplementation
 import net.mamoe.mirai.console.MiraiConsoleImplementation
 import java.io.File
@@ -58,7 +58,7 @@ object Resource {
     val rootPath: String = MiraiConsoleImplementation.getInstance().rootPath.toFile().absolutePath
 
     @JvmStatic
-    fun i1() {
+    public fun i1() {
         if (!File("$rootPath/", "conf/LSys/conf.json").exists()) {
             try {
                 File("$rootPath/", "conf/LSys/conf.json").parentFile.mkdirs()

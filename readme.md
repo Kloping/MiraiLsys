@@ -109,6 +109,7 @@
 - 解析图片[Lsys-PicParser](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-PicParser)
 - 积分相关操作的1[Lsys-Score1](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-Score1)
 - 积分相关操作的2[Lsys-Score2](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-Score2)
+- 成语接龙[Lsys-idiom]()
 - 
 - (后续将继续更新)
 

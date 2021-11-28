@@ -1,10 +1,10 @@
 package cn.kloping.lsys.savers
 
-import cn.kloping.file.FileUtils
 import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.entitys.User
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
+import io.github.kloping.file.FileUtils
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 

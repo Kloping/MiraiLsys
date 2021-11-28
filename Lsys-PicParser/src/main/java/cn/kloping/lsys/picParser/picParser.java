@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static cn.kloping.lsys.utils.MessageUtils.createImageInGroup;
-import static cn.kloping.url.UrlUtils.getStringFromHttpUrl;
+import static io.github.kloping.url.UrlUtils.getStringFromHttpUrl;
 
 public class picParser {
 

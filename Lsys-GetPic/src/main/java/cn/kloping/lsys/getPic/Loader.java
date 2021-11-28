@@ -6,17 +6,14 @@ import cn.kloping.lsys.entitys.Request;
 import cn.kloping.lsys.entitys.Result;
 import cn.kloping.lsys.entitys.User;
 import cn.kloping.lsys.workers.Methods;
-import cn.kloping.url.UrlUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import io.github.kloping.initialize.FileInitializeValue;
+import io.github.kloping.url.UrlUtils;
 import kotlin.jvm.functions.Function2;
-import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.message.data.ForwardMessageBuilder;
 import net.mamoe.mirai.message.data.Image;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -45,7 +42,7 @@ public class Loader {
         invokeGroup.getInvokes().put("堆糖搜图.*", "getDuitPics");
         invokeGroup.getInvokesAfter().put("堆糖搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
 
-        conf = cn.kloping.initialize.FileInitializeValue.getValue(Resource.rootPath+"/conf/Lsys/lsys-getPic.json", conf, true);
+        conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
     }
 
     public static final Function2<User, Request, Result> fun2 = (user, request) -> {
@@ -174,11 +171,11 @@ public class Loader {
     };
 
     public static void loadConf() {
-        conf = cn.kloping.initialize.FileInitializeValue.getValue("./conf/Lsys/lsys-getPic.json", conf, true);
+        conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
     }
 
     public static void applyConf() {
-        cn.kloping.initialize.FileInitializeValue.putValues("./conf/Lsys/lsys-getPic.json", conf, true);
+        FileInitializeValue.putValues(Resource.rootPath+"/conf/Lsys/lsys-getPic.json", conf, true);
     }
 
     public static void load() {

@@ -15,6 +15,7 @@
         <module>Lsys-PicParser</module>
         <module>Lsys-Score1</module>
         <module>Lsys-Score2</module>
+        <module>Lsys-idiom</module>
     </modules>
 
     <properties>
@@ -27,7 +28,7 @@
         <dependency>
             <groupId>io.github.Kloping</groupId>
             <artifactId>JvUtils</artifactId>
-            <version>0.2.5</version>
+            <version>0.2.7</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>

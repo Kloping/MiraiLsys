@@ -5,7 +5,7 @@ import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.entitys.Request
 import cn.kloping.lsys.entitys.Result
 import cn.kloping.lsys.entitys.User
-import cn.kloping.number.NumberUtils
+import io.github.kloping.number.NumberUtils
 import java.util.concurrent.ConcurrentHashMap
 
 object Methods {
@@ -94,7 +94,7 @@ object Methods {
     val mOpen: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
         val gq: Number = any?.gId!!
         if (user.qq == Resource.conf.qq) {
-            if (conf.opens.add(gq)) {
+            if (conf.opens.add(gq.toLong())) {
                 Resource.conf.apply()
                 Result(null, 0)
             } else {

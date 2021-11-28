@@ -4,7 +4,6 @@ import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.Resource.i1
 import cn.kloping.lsys.utils.toText
 import net.mamoe.mirai.console.ConsoleFrontEndImplementation
-import net.mamoe.mirai.console.MiraiConsoleImplementation
 import net.mamoe.mirai.console.command.CommandManager
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
@@ -21,7 +20,7 @@ import kotlin.coroutines.CoroutineContext
 class PluginMain : KotlinPlugin {
 
     constructor() : super(
-        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.5")
+        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.6")
             .name("插件_ Author => HRS LSys Loaded")
             .info("插件")
             .author("HRS")
@@ -52,12 +51,10 @@ class PluginMain : KotlinPlugin {
                     handMessage(text, event)
             }
         })
-
     }
 
     companion object {
         @JvmField
         var INSTANCE = PluginMain()
     }
-
 }

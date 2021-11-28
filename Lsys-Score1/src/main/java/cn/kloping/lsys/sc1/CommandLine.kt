@@ -1,7 +1,7 @@
 package cn.kloping.lsys.sc1
 
-import cn.kloping.initialize.FileInitializeValue
 import cn.kloping.lsys.Resource
+import io.github.kloping.initialize.FileInitializeValue
 import net.mamoe.mirai.console.command.CommandSender
 import net.mamoe.mirai.console.command.SimpleCommand
 import java.lang.System.err

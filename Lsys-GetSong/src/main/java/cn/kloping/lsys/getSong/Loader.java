@@ -6,9 +6,9 @@ import cn.kloping.lsys.entitys.Request;
 import cn.kloping.lsys.entitys.Result;
 import cn.kloping.lsys.entitys.User;
 import cn.kloping.lsys.workers.Methods;
-import cn.kloping.url.UrlUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import io.github.kloping.url.UrlUtils;
 import kotlin.jvm.functions.Function2;
 
 import java.io.UnsupportedEncodingException;

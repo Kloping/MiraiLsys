@@ -1,6 +1,7 @@
 package cn.kloping.lsys.sc1;
 
 import cn.kloping.lsys.Resource;
+import io.github.kloping.initialize.FileInitializeValue;
 
 public class Conf {
     private int win = 40;
@@ -23,6 +24,6 @@ public class Conf {
     }
 
     public void apply() {
-        cn.kloping.initialize.FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/sc1.json", this, true);
+        FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/sc1.json", this, true);
     }
 }

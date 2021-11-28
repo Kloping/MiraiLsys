@@ -3,13 +3,14 @@ package cn.kloping.lsys.sc1;
 import cn.kloping.lsys.Resource;
 import cn.kloping.lsys.entitys.InvokeGroup;
 import cn.kloping.lsys.workers.Methods;
+import io.github.kloping.initialize.FileInitializeValue;
 
 import static cn.kloping.lsys.sc1.Methods.*;
 
 public class sc1 {
     public static Conf conf = new Conf();
     public static void start() {
-        conf = cn.kloping.initialize.FileInitializeValue.getValue(Resource.rootPath+"/conf/Lsys/sc1.json", conf, true);
+        conf = FileInitializeValue.getValue(Resource.rootPath+"/conf/Lsys/sc1.json", conf, true);
 
         InvokeGroup invokeGroup = new InvokeGroup("sco1");
 
