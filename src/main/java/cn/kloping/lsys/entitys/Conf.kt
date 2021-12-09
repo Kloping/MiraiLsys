@@ -8,19 +8,19 @@ import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
 data class Conf(
-    val path: String,
+    var path: String,
     var qq: Number,
     var opens: java.util.HashSet<Long>,
-    val invokeGroups: ConcurrentHashMap<String, InvokeGroup>,
+    var invokeGroups: ConcurrentHashMap<String, InvokeGroup>,
     var prK: Boolean
 ) : Entity {
 
     constructor() : this("", -1, LinkedHashSet(), ConcurrentHashMap<String, InvokeGroup>(), false);
 
-    @JSONField(serialize = false)
+    @JSONField(serialize = false, deserialize = false)
     val invokes = ConcurrentHashMap<String, String>();
 
-    @JSONField(serialize = false)
+    @JSONField(serialize = false, deserialize = false)
     val invokesAfter = ConcurrentHashMap<String, Array<String>>();
 
     fun load() {

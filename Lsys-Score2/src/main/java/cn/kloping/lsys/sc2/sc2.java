@@ -3,11 +3,16 @@ package cn.kloping.lsys.sc2;
 import cn.kloping.lsys.Resource;
 import cn.kloping.lsys.entitys.InvokeGroup;
 import cn.kloping.lsys.workers.Methods;
+import io.github.kloping.initialize.FileInitializeValue;
 
 import static cn.kloping.lsys.sc2.Methods.*;
 
 public class sc2 {
+    public static Conf conf = new Conf();
+
     public static void start() {
+        conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/sc2.json", conf, true);
+
         InvokeGroup invokeGroup = new InvokeGroup("sco2");
 
         invokeGroup.getInvokes().put("积分转让.*", "transTo");

@@ -44,16 +44,16 @@ public class Methods {
         if (day != user.getUr()) {
             reg(day, user.getQq().longValue());
             int n = getRegNum(day);
-            int s1 = 100;
+            int s1 = conf.getSignNormalGet();
             switch (n) {
                 case 1:
-                    s1 = 220;
+                    s1 = conf.getSignFirstGet();
                     break;
                 case 2:
-                    s1 = 160;
+                    s1 = conf.getSignSecondGet();
                     break;
                 case 3:
-                    s1 = 120;
+                    s1 = conf.getSignThirdGet();
                     break;
             }
             user.setPf(0);

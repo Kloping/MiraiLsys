@@ -1,5 +1,6 @@
 package cn.kloping.lsys.sc2;
 
+import cn.kloping.lsys.entitys.Conf;
 import net.mamoe.mirai.console.plugin.Plugin;
 import net.mamoe.mirai.console.plugin.PluginManager;
 import net.mamoe.mirai.console.plugin.description.PluginDescription;
