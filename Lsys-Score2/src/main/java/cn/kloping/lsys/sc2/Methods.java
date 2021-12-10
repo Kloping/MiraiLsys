@@ -49,6 +49,6 @@ public class Methods {
     };
 
     public static int getRand(int from, int to) {
-        return MessageUtils.random.nextInt(from) + (to - from);
+        return MessageUtils.random.nextInt((to - from)) + from;
     }
 }
