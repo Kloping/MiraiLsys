@@ -18,10 +18,14 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 val threads = Executors.newFixedThreadPool(16)
+val showeds = ConcurrentHashMap<Long, Boolean>()
 
 suspend fun handMessage(str: String, event: MessageEvent) {
     if (!conf.opens.contains(-1) && !conf.opens.contains(event.subject.id) && event.sender.id != conf.qq) {
-        println("未开启群: " + event.subject.id)
+        if (!showeds.containsKey(event.subject.id) || !showeds[event.subject.id]!!) {
+            println("未开启群: " + event.subject.id)
+            showeds[event.subject.id] = true
+        }
         return
     }
     threads.execute { runBlocking { run(str, event) } }

@@ -50,7 +50,7 @@ object Resource {
         val invokeGroupMap = ConcurrentHashMap<String, InvokeGroup>().apply {
             put(invokeGroup.id, invokeGroup)
         }
-        conf = Conf("$rootPath/data/LSys", -1, HashSet(), invokeGroupMap, false)
+        conf = Conf(File(rootPath, "/data/LSys").absolutePath, -1, HashSet(), invokeGroupMap, false)
     }
 
     @OptIn(ConsoleFrontEndImplementation::class)
@@ -58,7 +58,7 @@ object Resource {
     val rootPath: String = MiraiConsoleImplementation.getInstance().rootPath.toFile().absolutePath
 
     @JvmStatic
-    public fun i1() {
+    fun i1() {
         if (!File("$rootPath/", "conf/LSys/conf.json").exists()) {
             try {
                 File("$rootPath/", "conf/LSys/conf.json").parentFile.mkdirs()
