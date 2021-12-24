@@ -14,8 +14,8 @@ public class PluginMain extends JavaPlugin {
 
     private PluginMain() {
         super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.idiom.PluginMain", "0.1")
-                .name("插件_9 Author => HRS LSys idiom Loaded")
-                .info("插件")
+                .name("plugin_9 Author - HRS LSys idiom Loaded")
+                .info("plugin-idiom")
                 .author("HRS")
                 .build());
     }

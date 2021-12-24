@@ -21,8 +21,8 @@ class PluginMain : KotlinPlugin {
 
     constructor() : super(
         JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.8-M1")
-            .name("插件_ Author => HRS LSys Loaded")
-            .info("插件")
+            .name("p_0-Author-HRS-LSys-Loaded")
+            .info("Lsys-main")
             .author("HRS")
             .build().apply {
             }

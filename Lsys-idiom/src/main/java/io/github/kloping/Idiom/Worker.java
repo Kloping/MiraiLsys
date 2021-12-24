@@ -68,7 +68,7 @@ public class Worker {
                     builder.append("成语接龙结束\n");
                     builder.append("共接了").append(String.valueOf(this.getHist().size())).append("次\n");
                     for (String s2 : this.getHist()) {
-                        builder.append(s2).append("=>");
+                        builder.append(s2).append("-");
                     }
                     builder.append("end");
                     request.getEvent().getSubject().sendMessage(builder.build());

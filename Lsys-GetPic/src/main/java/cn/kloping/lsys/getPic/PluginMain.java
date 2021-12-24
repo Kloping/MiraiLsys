@@ -12,8 +12,8 @@ public class PluginMain extends JavaPlugin {
 
     private PluginMain() {
         super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.getPic.PluginMain", "0.1")
-                .name("插件_4 Author => HRS LSys GetPic Loaded")
-                .info("插件")
+                .name("plugin_4 Author - HRS LSys GetPic Loaded")
+                .info("plugin-pic")
                 .author("HRS")
                 .build());
     }

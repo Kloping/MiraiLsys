@@ -13,8 +13,8 @@ public class PluginMain extends JavaPlugin {
 
     private PluginMain() {
         super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.picParser.PluginMain", "0.1")
-                .name("插件_6 Author => HRS LSys picParser Loaded")
-                .info("插件")
+                .name("p_6 Author - HRS LSys picParser Loaded")
+                .info("plugin-picP")
                 .author("HRS")
                 .build());
     }

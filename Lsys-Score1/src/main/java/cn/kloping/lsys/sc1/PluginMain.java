@@ -15,8 +15,8 @@ public class PluginMain extends JavaPlugin {
 
     private PluginMain() {
         super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.sco1.PluginMain", "0.1")
-                .name("插件_7 Author => HRS LSys sco1 Loaded")
-                .info("插件")
+                .name("p_7 Author - HRS LSys sco1 Loaded")
+                .info("plugin-sco1")
                 .author("HRS")
                 .build());
     }

@@ -11,8 +11,8 @@ public class PluginMain extends JavaPlugin {
 
     private PluginMain() {
         super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.getSong.PluginMain", "0.1")
-                .name("插件_5 Author => HRS LSys GetSong Loaded")
-                .info("插件")
+                .name("plugin_5 Author - HRS LSys GetSong Loaded")
+                .info("plugin-song")
                 .author("HRS")
                 .build());
     }
