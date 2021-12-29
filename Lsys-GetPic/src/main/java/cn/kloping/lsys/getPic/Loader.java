@@ -142,7 +142,6 @@ public class Loader {
         return new Result(new Object[]{}, 1);
     };
 
-
 //    public static synchronized Image createImageInGroup(Contact group, String path) {
 //        try {
 //            if (path.startsWith("http")) {
@@ -175,7 +174,7 @@ public class Loader {
     }
 
     public static void applyConf() {
-        FileInitializeValue.putValues(Resource.rootPath+"/conf/Lsys/lsys-getPic.json", conf, true);
+        FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
     }
 
     public static void load() {

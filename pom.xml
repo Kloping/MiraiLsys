@@ -16,6 +16,7 @@
         <module>Lsys-Score1</module>
         <module>Lsys-Score2</module>
         <module>Lsys-idiom</module>
+        <module>Lsys-GameBase</module>
     </modules>
 
     <properties>
@@ -29,7 +30,7 @@
         <dependency>
             <groupId>io.github.Kloping</groupId>
             <artifactId>JvUtils</artifactId>
-            <version>LATEST</version>
+            <version>0.3</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
