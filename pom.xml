@@ -8,6 +8,7 @@
     <artifactId>MiraiLSys</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>Lsys-GetPic</module>
         <module>Lsys-GetSong</module>
@@ -30,7 +31,7 @@
         <dependency>
             <groupId>io.github.Kloping</groupId>
             <artifactId>JvUtils</artifactId>
-            <version>0.3</version>
+            <version>0.3.4</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
