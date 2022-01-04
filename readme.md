@@ -29,7 +29,9 @@
 ### 请看配置文件
 
 配置文件位置将在 ./conf/Lsys 下
+
 ### [配置文件说明](https://github.com/Kloping/MiraiLsys/tree/master/conf)
+
 <details> 
 <summary>配置文件</summary> 
 
@@ -110,8 +112,9 @@
 - 积分相关操作的1[Lsys-Score1](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-Score1)
 - 积分相关操作的2[Lsys-Score2](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-Score2)
 - 成语接龙[Lsys-idiom](https://github.com/Kloping/MiraiLsys/tree/master/Lsys-idiom)
-- 
-- (后续将继续更新)
+- 群管[Lsys-AdminOwner](https://github.com/gdpl2112/MiraiPlugin-AdminOwner)
+-
+- (后续将可能继续更新)
 
 #### 值得注意的是 若 未安装 主插件
 
