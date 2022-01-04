@@ -4,6 +4,7 @@ import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.entitys.Request
 import cn.kloping.lsys.savers.PutGetter
 import cn.kloping.lsys.utils.MessageUtils.createImageInGroup
+import cn.kloping.lsys.workers.Methods.execute0
 import cn.kloping.lsys.workers.Methods.invokes
 import kotlinx.coroutines.runBlocking
 import net.mamoe.mirai.contact.Contact
@@ -95,6 +96,7 @@ suspend fun run(str: String, event: MessageEvent) {
 }
 
 val eReg = Regex(",\\s+");
+
 suspend fun parseType(resText: String, contact: Contact, id: Long): Message? {
     if (resText.startsWith("<") && resText.endsWith(">")) {
         val content = resText.substring(1, resText.length - 1)
@@ -113,6 +115,9 @@ suspend fun parseType(resText: String, contact: Contact, id: Long): Message? {
                 }
                 type == "Image" -> {
                     return createImageInGroup(contact, args[0])
+                }
+                type == "Face" -> {
+                    return Face(Integer.parseInt(args[0]))
                 }
             }
         } catch (e: Exception) {

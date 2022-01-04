@@ -8,7 +8,7 @@ package cn.kloping.lsys.gamebase.entity;
  * @date 2021/12/28
  */
 public class BigKnife extends Knife {
-    private int price = 18;
+    private int price = 180;
     private int att = 30;
     private int maxAtt = 30;
     private int maxEndurance = 30;

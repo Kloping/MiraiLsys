@@ -7,6 +7,9 @@ import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 
 
+/**
+ * @author github-kloping
+ */
 public class PluginMain extends JavaPlugin {
     public static final PluginMain INSTANCE = new PluginMain();
 

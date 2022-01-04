@@ -20,7 +20,7 @@ import kotlin.coroutines.CoroutineContext
 class PluginMain : KotlinPlugin {
 
     constructor() : super(
-        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.8-M1")
+        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.9")
             .name("p_0-Author-HRS-LSys-Loaded")
             .info("Lsys-main")
             .author("HRS")

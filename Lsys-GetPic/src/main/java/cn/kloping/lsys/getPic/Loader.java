@@ -20,32 +20,35 @@ import java.util.concurrent.Executors;
 
 import static cn.kloping.lsys.utils.MessageUtils.createImageInGroup;
 
+/**
+ * @author github-kloping
+ */
 public class Loader {
     public static Conf conf = new Conf(0, 12);
 
-    public static final String baseUrl = "http://49.232.209.180:20041/api/search/pic?keyword=%s&num=%s&type=%s";
+    public static final String BASE_URL = "http://49.232.209.180:20041/api/search/pic?keyword=%s&num=%s&type=%s";
 
-    public static final InvokeGroup invokeGroup = new InvokeGroup("getPic");
+    public static final InvokeGroup INVOKE_GROUP = new InvokeGroup("getPic");
 
     public static long cd = 0;
 
     static {
-        invokeGroup.getInvokes().put("发张.*", "getPicOne");
-        invokeGroup.getInvokesAfter().put("发张.*", new String[]{"<Image = $1>", "获取失败"});
+        INVOKE_GROUP.getInvokes().put("发张.*", "getPicOne");
+        INVOKE_GROUP.getInvokesAfter().put("发张.*", new String[]{"<Image = $1>", "获取失败"});
 
-        invokeGroup.getInvokes().put("搜图菜单", "method");
-        invokeGroup.getInvokesAfter().put("搜图菜单", new String[]{"<At = ?>\n搜图菜单\n发张 xx\n百度搜图 xx\n堆糖搜图 xx"});
+        INVOKE_GROUP.getInvokes().put("搜图菜单", "method");
+        INVOKE_GROUP.getInvokesAfter().put("搜图菜单", new String[]{"<At = ?>\n搜图菜单\n发张 xx\n百度搜图 xx\n堆糖搜图 xx"});
 
-        invokeGroup.getInvokes().put("百度搜图.*", "getBaidPics");
-        invokeGroup.getInvokesAfter().put("百度搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
+        INVOKE_GROUP.getInvokes().put("百度搜图.*", "getBaidPics");
+        INVOKE_GROUP.getInvokesAfter().put("百度搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
 
-        invokeGroup.getInvokes().put("堆糖搜图.*", "getDuitPics");
-        invokeGroup.getInvokesAfter().put("堆糖搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
+        INVOKE_GROUP.getInvokes().put("堆糖搜图.*", "getDuitPics");
+        INVOKE_GROUP.getInvokesAfter().put("堆糖搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
 
         conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
     }
 
-    public static final Function2<User, Request, Result> fun2 = (user, request) -> {
+    public static final Function2<User, Request, Result> FUN2 = (user, request) -> {
         try {
             if (cd > 0) {
                 System.err.println("冷却中...");
@@ -53,7 +56,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(baseUrl, names, conf.getNum(), "baidu")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(BASE_URL, names, conf.getNum(), "baidu")));
             startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();
@@ -92,7 +95,7 @@ public class Loader {
         });
     }
 
-    public static final Function2<User, Request, Result> fun1 = (user, request) -> {
+    public static final Function2<User, Request, Result> FUN1 = (user, request) -> {
         try {
             if (cd > 0) {
                 System.err.println("冷却中...");
@@ -100,7 +103,7 @@ public class Loader {
             }
             String name = request.getStr().substring(request.getOStr().indexOf("."));
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(baseUrl, names, "1", "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(BASE_URL, names, "1", "duit")));
             String picUrl = jo.getJSONArray("data").getString(0);
             startCd();
             return new Result(new Object[]{picUrl}, 0);
@@ -110,15 +113,15 @@ public class Loader {
         return new Result(new Object[]{}, 1);
     };
 
-    public static final Function2<User, Request, Result> fun3 = (user, request) -> {
+    public static final Function2<User, Request, Result> FUN3 = (user, request) -> {
         try {
             if (cd > 0) {
                 System.err.println("冷却中...");
                 return null;
             }
-            String name = request.getStr().substring(request.getOStr().indexOf("."));
+            String name = request.getStr().substring(request.getOStr().indexOf(".")).trim();
             String names = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(baseUrl, names, conf.getNum(), "duit")));
+            JSONObject jo = JSON.parseObject(UrlUtils.getStringFromHttpUrl(String.format(BASE_URL, names, conf.getNum(), "duit")));
             startCd();
             ForwardMessageBuilder builder = new ForwardMessageBuilder(request.getEvent().getSubject());
             long id = request.getEvent().getBot().getId();
@@ -164,11 +167,6 @@ public class Loader {
 //        }
 //    }
 
-    public static final Runnable runnable = () -> {
-        if (!Resource.conf.getInvokeGroups().containsKey("getPic"))
-            Resource.conf.getInvokeGroups().put("getPic", invokeGroup);
-    };
-
     public static void loadConf() {
         conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
     }
@@ -177,12 +175,17 @@ public class Loader {
         FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
     }
 
-    public static void load() {
-        Resource.loadConfAfter.add(runnable);
+    public static final Runnable RUNNABLE = () -> {
+        if (!Resource.conf.getInvokeGroups().containsKey("getPic"))
+            Resource.conf.getInvokeGroups().put("getPic", INVOKE_GROUP);
+    };
 
-        Methods.invokes.put("getPicOne", fun1);
-        Methods.invokes.put("getBaidPics", fun2);
-        Methods.invokes.put("getDuitPics", fun3);
+    public static void load() {
+        Resource.loadConfAfter.add(RUNNABLE);
+
+        Methods.invokes.put("getPicOne", FUN1);
+        Methods.invokes.put("getBaidPics", FUN2);
+        Methods.invokes.put("getDuitPics", FUN3);
 
         Resource.i1();
     }

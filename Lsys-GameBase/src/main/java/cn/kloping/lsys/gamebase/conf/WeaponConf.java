@@ -25,11 +25,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WeaponConf {
 
     public static final WeaponConf INSTANCE = new WeaponConf();
-    private static final String path = "/conf/LSys/game0/weaponConf.json";
+    private static final String PATH = "/conf/LSys/game0/weaponConf.json";
     private static File dataFile = null;
 
     static {
-        dataFile = new File(Resource.rootPath, path);
+        dataFile = new File(Resource.rootPath, PATH);
         WeaponConf wc = FileInitializeValue.getValue(dataFile.getAbsolutePath(), INSTANCE, true);
         wc.weaponJo.forEach((k, v) -> {
             try {
@@ -39,11 +39,9 @@ public class WeaponConf {
                 e.printStackTrace();
             }
         });
-
         Set<Class<? extends Weapon>> cs = new ConcurrentSet<>();
         cs.add(Knife.class);
         cs.add(BigKnife.class);
-
         for (Class<? extends Weapon> c : cs) {
             INSTANCE.putIfNotExists(c.getName(), ClassUtils.newInstance(c));
         }

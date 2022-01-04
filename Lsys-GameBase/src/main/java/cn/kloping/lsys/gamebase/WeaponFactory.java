@@ -16,10 +16,10 @@ public class WeaponFactory {
     private WeaponFactory() {
     }
 
-    public static Weapon newWeapon(Class<? extends Weapon> type, int id) throws IllegalAccessException {
+    public static <T extends Weapon> T newWeapon(Class<T> type, int id) throws IllegalAccessException {
         if (WeaponConf.INSTANCE.getWeaponMap().containsKey(type.getName())) {
-            Weapon oWeapon = WeaponConf.INSTANCE.getWeaponMap().get(type.getName());
-            Weapon weapon = io.github.kloping.clasz.ClassUtils.copyAllField(oWeapon);
+            T oWeapon = (T) WeaponConf.INSTANCE.getWeaponMap().get(type.getName());
+            T weapon = io.github.kloping.clasz.ClassUtils.copyAllField(oWeapon);
             weapon.setId(id);
             return weapon;
         } else {

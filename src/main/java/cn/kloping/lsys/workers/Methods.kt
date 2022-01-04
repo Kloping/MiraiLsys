@@ -5,7 +5,14 @@ import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.entitys.Request
 import cn.kloping.lsys.entitys.Result
 import cn.kloping.lsys.entitys.User
+import cn.kloping.lsys.parseType
+import cn.kloping.lsys.toLink
 import io.github.kloping.number.NumberUtils
+import kotlinx.coroutines.runBlocking
+import net.mamoe.mirai.contact.Contact
+import net.mamoe.mirai.event.events.MessageEvent
+import net.mamoe.mirai.message.code.MiraiCode
+import net.mamoe.mirai.message.data.MessageChainBuilder
 import java.util.concurrent.ConcurrentHashMap
 
 object Methods {
@@ -171,5 +178,30 @@ object Methods {
             n++
         }
         Result(arrayOf(sb.toString()), 0)
+    }
+
+    @JvmStatic
+    public fun execute0(vararg args: Any, oText: String, contact: Contact, id: Long) {
+        var resText = oText
+        if (resText.trim().startsWith("[") && resText.trim().endsWith("]")) {
+            val codeStr = resText.substring(1, resText.length - 1)
+            val me = MiraiCode.deserializeMiraiCode(codeStr)
+            runBlocking { contact.sendMessage(me) }
+            return
+        }
+        args.let {
+            var i = 1;
+            for (e in it) {
+                val tp1 = "$" + i++;
+                resText = resText.replace(tp1, e.toString());
+            }
+        }
+        val mb = MessageChainBuilder()
+        for (e in toLink(resText)) {
+            runBlocking { parseType(e.toString(), contact, id)?.let { it1 -> mb.append(it1) } }
+        }
+        if (!mb.isEmpty()) {
+            runBlocking { contact.sendMessage(mb.build()) }
+        }
     }
 }

@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @date 2021/12/28
  */
 public class Knife implements ColdWeapon {
-    private int price = 10;
+    private int price = 100;
     private int att = 10;
     private int maxAtt = 10;
     private int maxEndurance = 10;
