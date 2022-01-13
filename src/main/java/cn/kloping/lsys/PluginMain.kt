@@ -17,16 +17,14 @@ import kotlin.coroutines.CoroutineContext
 /**
  * @Author hrs 3474006766@qq.com
  */
-class PluginMain : KotlinPlugin {
-
-    constructor() : super(
-        JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.9")
-            .name("p_0-Author-HRS-LSys-Loaded")
-            .info("Lsys-main")
-            .author("HRS")
-            .build().apply {
-            }
-    )
+class PluginMain() : KotlinPlugin(
+    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "0.2.9")
+        .name("p_0-Author-HRS-LSys-Loaded")
+        .info("Lsys-main")
+        .author("HRS")
+        .build().apply {
+        }
+) {
 
     @OptIn(ConsoleFrontEndImplementation::class)
     override fun onEnable() {

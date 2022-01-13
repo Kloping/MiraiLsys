@@ -15,14 +15,14 @@ public class Game0 extends JavaPlugin {
     public Game0() {
         super(new JvmPluginDescriptionBuilder("o.github.lsys.gameBase.game0", "1.0")
                 .name("plugin_10 Author-HRS-LSys-game-Loaded")
-                .info("plugin-pic")
+                .info("plugin-gb")
                 .author("HRS")
                 .build());
     }
 
 
     @Override
-    public void onLoad(@NotNull PluginComponentStorage this$onLoad) {
+    public void onLoad(@NotNull PluginComponentStorage thisOnLoad) {
         if (!Utils.isExits()) {
             getLogger().error("欲使用game0插件 必须安装 Lsys 插件");
             getLogger().error("欲使用game0插件 必须安装 Lsys 插件");
