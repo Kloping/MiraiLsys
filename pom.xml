@@ -18,6 +18,7 @@
         <module>Lsys-Score2</module>
         <module>Lsys-idiom</module>
         <module>Lsys-GameBase</module>
+        <module>Lsys-repeat</module>
     </modules>
 
     <properties>
