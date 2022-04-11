@@ -1,5 +1,6 @@
 package com.github.kloping.lsys;
 
+import io.github.kloping.initialize.FileInitializeValue;
 import net.mamoe.mirai.console.extension.PluginComponentStorage;
 import net.mamoe.mirai.console.plugin.PluginManager;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
@@ -21,6 +22,8 @@ public class Repeat extends JavaPlugin {
                 .author("HRS")
                 .build());
     }
+
+    public static final Conf CONF_INSTANCE = FileInitializeValue.getValue("./conf/LSys/repeat-conf.json", new Conf(), true);
 
     @Override
     public void onLoad(@NotNull PluginComponentStorage $this$onLoad) {
