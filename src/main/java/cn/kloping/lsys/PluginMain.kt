@@ -12,6 +12,7 @@ import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.SimpleListenerHost
 import net.mamoe.mirai.event.events.FriendMessageEvent
 import net.mamoe.mirai.event.events.GroupMessageEvent
+import net.mamoe.mirai.event.events.MessageSyncEvent
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -47,6 +48,12 @@ class PluginMain() : KotlinPlugin(
                 val text = toText(event.message).trim();
                 if (conf.prK)
                     handMessage(text, event)
+            }
+
+            @EventHandler
+            suspend fun handleMessage(event: MessageSyncEvent) {
+                val text = toText(event.message).trim();
+                handMessage(text, event)
             }
         })
     }
