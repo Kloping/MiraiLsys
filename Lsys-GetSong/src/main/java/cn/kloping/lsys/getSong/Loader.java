@@ -41,7 +41,7 @@ public class Loader {
             int i = request.getOStr().indexOf(".");
             String name = request.getStr().substring(i).trim();
             name = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = getSong(name, "kugou");
+            JSONObject jo = getSong(name, "qq");
             return new Result(new Object[]{
                     "MusicShare",
                     "QQMusic",
@@ -61,7 +61,7 @@ public class Loader {
             int i = request.getOStr().indexOf(".");
             String name = request.getStr().substring(i).trim();
             name = URLEncoder.encode(name, "utf-8");
-            JSONObject jo = getSong(name, "kugou");
+            JSONObject jo = getSong(name, "wy");
             return new Result(new Object[]{
                     "MusicShare",
                     "NeteaseCloudMusic",
@@ -85,9 +85,9 @@ public class Loader {
         invokeGroup.getInvokes().put("网易点歌.*", "pointWy");
         invokeGroup.getInvokes().put("点歌系统", "method");
         //========================
-        invokeGroup.getInvokesAfter().put("酷狗点歌.*", new String[]{"<$1 = $2, $3, $4, http://49.232.209.180:20041/, $6, $7>", "<At = ?>点歌失败"});
-        invokeGroup.getInvokesAfter().put("QQ点歌.*", new String[]{"<$1 = $2, $3, $4, http://49.232.209.180:20041/, $6, $7>", "<At = ?>点歌失败"});
-        invokeGroup.getInvokesAfter().put("网易点歌.*", new String[]{"<$1 = $2, $3, $4, http://49.232.209.180:20041/, $6, $7>", "<At = ?>点歌失败"});
+        invokeGroup.getInvokesAfter().put("酷狗点歌.*", new String[]{"<$1 = $2, $3, $4, https://www.kugou.com/, $6, $7>", "<At = ?>点歌失败"});
+        invokeGroup.getInvokesAfter().put("QQ点歌.*", new String[]{"<$1 = $2, $3, $4, https://y.qq.com/, $6, $7>", "<At = ?>点歌失败"});
+        invokeGroup.getInvokesAfter().put("网易点歌.*", new String[]{"<$1 = $2, $3, $4, https://music.163.com/, $6, $7>", "<At = ?>点歌失败"});
         invokeGroup.getInvokesAfter().put("点歌系统", new String[]{"<At = ?>\n点歌系统\n酷狗点歌 歌名\n网易点歌 歌名\nQQ点歌 歌名"});
     }
 

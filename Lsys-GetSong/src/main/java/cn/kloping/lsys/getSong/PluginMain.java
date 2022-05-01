@@ -10,7 +10,7 @@ public class PluginMain extends JavaPlugin {
     public static final PluginMain INSTANCE = new PluginMain();
 
     private PluginMain() {
-        super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.getSong.PluginMain", "0.1")
+        super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.getSong.PluginMain", "0.2")
                 .name("plugin_5 Author - HRS LSys GetSong Loaded")
                 .info("plugin-song")
                 .author("HRS")
