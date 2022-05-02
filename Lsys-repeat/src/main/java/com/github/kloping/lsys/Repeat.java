@@ -20,6 +20,7 @@ public class Repeat extends JavaPlugin {
                 .name("lsys Author HRS LSys repeat Loaded")
                 .info("plugin-sco1")
                 .author("HRS")
+                .dependsOn("cn.kloping.Lsys","0.3",true)
                 .build());
     }
 
@@ -27,13 +28,13 @@ public class Repeat extends JavaPlugin {
 
     @Override
     public void onLoad(@NotNull PluginComponentStorage $this$onLoad) {
-        if (!Utils.isExits()) {
-            getLogger().error("欲使用repeat插件 必须安装 Lsys 插件");
-            getLogger().error("欲使用repeat插件 必须安装 Lsys 插件");
-            getLogger().error("欲使用repeat插件 必须安装 Lsys 插件");
-            PluginManager.INSTANCE.disablePlugin(INSTANCE);
-            return;
-        }
+//        if (!Utils.isExits()) {
+//            getLogger().error("欲使用repeat插件 必须安装 Lsys 插件");
+//            getLogger().error("欲使用repeat插件 必须安装 Lsys 插件");
+//            getLogger().error("欲使用repeat插件 必须安装 Lsys 插件");
+//            PluginManager.INSTANCE.disablePlugin(INSTANCE);
+//            return;
+//        }
         try {
             start();
         } catch (Exception e) {
