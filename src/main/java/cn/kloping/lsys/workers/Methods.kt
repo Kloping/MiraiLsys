@@ -137,16 +137,20 @@ object Methods {
     val mOpen0: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
         val t1 = any?.str
         val numStr = NumberUtils.findNumberFromString(t1);
-        val gq: Number = Integer.parseInt(numStr);
-        if (user.qq == Resource.conf.qq) {
-            if (conf.opens.add(gq.toLong())) {
-                Resource.conf.apply()
-                Result(null, 0)
-            } else {
-                Result(null, 1)
-            }
-        } else {
+        if (numStr.isNullOrEmpty()) {
             null
+        } else {
+            val gq: Number = Integer.parseInt(numStr);
+            if (user.qq == Resource.conf.qq) {
+                if (conf.opens.add(gq.toLong())) {
+                    Resource.conf.apply()
+                    Result(null, 0)
+                } else {
+                    Result(null, 1)
+                }
+            } else {
+                null
+            }
         }
     }
 
@@ -157,17 +161,21 @@ object Methods {
     val mClose0: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
         val t1 = any?.str
         val numStr = NumberUtils.findNumberFromString(t1);
-        val gq: Number = Integer.parseInt(numStr);
-        if (user.qq == Resource.conf.qq) {
-            if (Resource.conf.opens.contains(gq)) {
-                conf.opens.remove(gq);
-                conf.apply();
-                Result(null, 0)
-            } else {
-                Result(null, 1)
-            }
-        } else {
+        if (numStr.isNullOrEmpty()) {
             null
+        } else {
+            val gq: Number = Integer.parseInt(numStr);
+            if (user.qq == Resource.conf.qq) {
+                if (Resource.conf.opens.contains(gq)) {
+                    conf.opens.remove(gq);
+                    conf.apply();
+                    Result(null, 0)
+                } else {
+                    Result(null, 1)
+                }
+            } else {
+                null
+            }
         }
     }
 
