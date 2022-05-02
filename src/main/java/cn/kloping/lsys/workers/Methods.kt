@@ -10,7 +10,6 @@ import cn.kloping.lsys.toLink
 import io.github.kloping.number.NumberUtils
 import kotlinx.coroutines.runBlocking
 import net.mamoe.mirai.contact.Contact
-import net.mamoe.mirai.event.events.MessageEvent
 import net.mamoe.mirai.message.code.MiraiCode
 import net.mamoe.mirai.message.data.MessageChainBuilder
 import java.util.concurrent.ConcurrentHashMap
@@ -120,18 +119,47 @@ object Methods {
         val gq: Number = any?.gId!!
         if (user.qq == Resource.conf.qq) {
             if (Resource.conf.opens.contains(gq)) {
-                /*    Resource.conf.opens = Resource.conf.opens.apply {
-                        for ((i, gi) in this.withIndex()) {
-                            when (gi) {
-                                gq -> {
-                                    this.drop(i)
-                                    break
-                                }
-                            }
-                        }
-                    }
-                    Resource.conf.apply()
-                */
+                conf.opens.remove(gq);
+                conf.apply();
+                Result(null, 0)
+            } else {
+                Result(null, 1)
+            }
+        } else {
+            null
+        }
+    }
+
+    /**
+     * 开启
+     */
+    @JvmField
+    val mOpen0: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
+        val t1 = any?.str
+        val numStr = NumberUtils.findNumberFromString(t1);
+        val gq: Number = Integer.parseInt(numStr);
+        if (user.qq == Resource.conf.qq) {
+            if (conf.opens.add(gq.toLong())) {
+                Resource.conf.apply()
+                Result(null, 0)
+            } else {
+                Result(null, 1)
+            }
+        } else {
+            null
+        }
+    }
+
+    /**
+     * 关闭
+     */
+    @JvmField
+    val mClose0: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
+        val t1 = any?.str
+        val numStr = NumberUtils.findNumberFromString(t1);
+        val gq: Number = Integer.parseInt(numStr);
+        if (user.qq == Resource.conf.qq) {
+            if (Resource.conf.opens.contains(gq)) {
                 conf.opens.remove(gq);
                 conf.apply();
                 Result(null, 0)

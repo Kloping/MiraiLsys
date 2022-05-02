@@ -25,6 +25,8 @@ object Resource {
             put("存积分.*", "m3")
             put("开启", "mOpen")
             put("关闭", "mClose")
+            put("开启群.*?", "mOpen0")
+            put("关闭.*?", "mClose0")
             put("开启私聊", "mpOpen")
             put("关闭私聊", "mpClose")
             put("菜单", "menuN")
