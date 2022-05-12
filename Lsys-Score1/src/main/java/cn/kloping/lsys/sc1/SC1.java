@@ -7,10 +7,13 @@ import io.github.kloping.initialize.FileInitializeValue;
 
 import static cn.kloping.lsys.sc1.Methods.*;
 
-public class sc1 {
+/**
+ * @author github-kloping
+ */
+public class SC1 {
     public static Conf conf = new Conf();
     public static void start() {
-        conf = FileInitializeValue.getValue(Resource.rootPath+"/conf/Lsys/sc1.json", conf, true);
+        conf = FileInitializeValue.getValue(Resource.ROOT_PATH +"/conf/LSys/sc1.json", conf, true);
 
         InvokeGroup invokeGroup = new InvokeGroup("sco1");
 
@@ -21,12 +24,12 @@ public class sc1 {
                 , "<At = ?>\nta没有积分能被您抢了"
                 , "<At = ?>\n您必须有一点积分才能去打劫哦"
                 , "<At = ?>\n犯罪指数最大"});
-        Methods.invokes.put("rob", rob);
+        Methods.invokes.put("rob", ROB);
         //=打劫end
         invokeGroup.getInvokes().put("签到", "sign");
         invokeGroup.getInvokesAfter().put("签到", new String[]{"<At = ?>\n签到成功!!!\n<Image = $1>\n犯罪指数清除\n今日第$2签\n获得$3积分"
                 , "<At = ?>\n签到失败,您今天已经签到了~"});
-        Methods.invokes.put("sign", sign);
+        Methods.invokes.put("sign", SIGN);
         //=签到end
         invokeGroup.getInvokes().put("猜拳.*", "mora");
         invokeGroup.getInvokesAfter().put("猜拳.*", new String[]{"<At = ?>\n你赢了 我出的是$1 你获得了$2积分"
@@ -36,7 +39,7 @@ public class sc1 {
                 , "<At = ?>\n积分范围在$1~$2之间"
                 , "<At = ?>\n没有数值 例: 猜拳 石头 10"
         });
-        Methods.invokes.put("mora", moraMethod);
+        Methods.invokes.put("mora", MORA_METHOD);
         //=猜拳end
 
         Resource.loadConfAfter.add(() -> {

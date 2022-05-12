@@ -16,6 +16,7 @@ public class Game0 extends JavaPlugin {
         super(new JvmPluginDescriptionBuilder("o.github.lsys.gameBase.game0", "1.0")
                 .name("plugin_10 Author-HRS-LSys-game-Loaded")
                 .info("plugin-gb")
+                .dependsOn("cn.kloping.Lsys","1.0",true)
                 .author("HRS")
                 .build());
     }
@@ -23,13 +24,6 @@ public class Game0 extends JavaPlugin {
 
     @Override
     public void onLoad(@NotNull PluginComponentStorage thisOnLoad) {
-        if (!Utils.isExits()) {
-            getLogger().error("欲使用game0插件 必须安装 Lsys 插件");
-            getLogger().error("欲使用game0插件 必须安装 Lsys 插件");
-            getLogger().error("欲使用game0插件 必须安装 Lsys 插件");
-            PluginManager.INSTANCE.disablePlugin(INSTANCE);
-            return;
-        }
         Game0Loader.load();
     }
 

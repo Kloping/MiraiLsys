@@ -33,10 +33,10 @@ public class Conf {
     public static Conf INSTANCE = new Conf();
 
     public void load() {
-        INSTANCE = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/lsys-idiom.json", INSTANCE, true);
+        INSTANCE = FileInitializeValue.getValue(Resource.ROOT_PATH + "/conf/LSys/lsys-idiom.json", INSTANCE, true);
     }
 
     public void apply() {
-        FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/lsys-idiom.json", INSTANCE, true);
+        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/LSys/lsys-idiom.json", INSTANCE, true);
     }
 }

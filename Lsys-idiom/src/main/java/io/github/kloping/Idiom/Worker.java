@@ -13,6 +13,9 @@ import net.mamoe.mirai.message.data.MessageChainBuilder;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author github-kloping
+ */
 public class Worker {
     public static void start() {
         InvokeGroup invokeGroup = new InvokeGroup("idiom");
@@ -27,7 +30,7 @@ public class Worker {
                 "<At = ?>\n游戏已经开始了哦~",
                 "游戏开始\n第$1次接龙\n当前词语:$2\n末尾音节:$3\n",
         });
-        Methods.invokes.put(methodName, m1);
+        Methods.invokes.put(methodName, M0);
         //==========
         touchKey = "我接.*";
         methodName = "meetIdiomGame";
@@ -45,7 +48,6 @@ public class Worker {
         Methods.invokes.put(methodName, m2);
         //==========
 
-
         Resource.loadConfAfter.add(() -> {
             if (!Resource.conf.getInvokeGroups().containsKey(invokeGroup.getId()))
                 Resource.conf.getInvokeGroups().put(invokeGroup.getId(), invokeGroup);
@@ -53,17 +55,17 @@ public class Worker {
         Resource.i1();
     }
 
-    public static final Map<Long, Idiom> games = new ConcurrentHashMap<>();
+    public static final Map<Long, Idiom> GAMES = new ConcurrentHashMap<>();
 
-    public static final Function2<User, Request, Result> m1 = (user, request) -> {
+    public static final Function2<User, Request, Result> M0 = (user, request) -> {
         long gid = request.getGId().longValue();
-        if (games.containsKey(gid)) {
+        if (GAMES.containsKey(gid)) {
             return Methods.state0;
         } else {
             Idiom idiom = new Idiom(Conf.INSTANCE.getMaxError()) {
                 @Override
                 public void fail(String s) {
-                    games.remove(gid);
+                    GAMES.remove(gid);
                     MessageChainBuilder builder = new MessageChainBuilder();
                     builder.append("成语接龙结束\n");
                     builder.append("共接了").append(String.valueOf(this.getHist().size())).append("次\n");
@@ -74,7 +76,7 @@ public class Worker {
                     request.getEvent().getSubject().sendMessage(builder.build());
                 }
             };
-            games.put(gid, idiom);
+            GAMES.put(gid, idiom);
             return new Result(new Object[]{
                     idiom.getHist().size()
                     , idiom.getUpWord().trim()
@@ -86,11 +88,11 @@ public class Worker {
     public static final Function2<User, Request, Result> m2 = (user, request) -> {
         long gid = request.getGId().longValue();
         int s1 = Conf.INSTANCE.getS1();
-        if (!games.containsKey(gid))
+        if (!GAMES.containsKey(gid))
             return Methods.state0;
         if (user.getP() < s1)
             return Methods.state6;
-        Idiom idiom = games.get(gid);
+        Idiom idiom = GAMES.get(gid);
         int i = request.getOStr().indexOf(".");
         String i1 = request.getStr().substring(i).trim();
         int st = -999;
@@ -125,14 +127,4 @@ public class Worker {
                 );
         }
     };
-
-    /*public static void main(String[] args) {
-        String json = UrlUtils.getStringFromHttpUrl("http://49.232.209.180:20041/api/get/idiom?word=" + URLEncoder.encode("为所欲为"));
-        System.out.println(json);
-        JsonSJC.parse(JSON.parseObject("{\"state\":1,\"word\":\"为所欲为\",\"pinyin\":[\"wei2\",\"suo3\",\"yu4\",\"wei2\"]}")
-                , "D:\\Projects\\OwnProjects\\MiraiLSys\\Lsys-idiom\\src\\main\\java\\io\\github\\kloping\\Idiom\\entity"
-                , "response"
-                , " io.github.kloping.Idiom.entity"
-        );
-    }*/
 }

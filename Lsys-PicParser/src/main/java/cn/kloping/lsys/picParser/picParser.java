@@ -45,7 +45,7 @@ public class picParser {
             try {
                 String url = getUrl(request);
                 String[] strings = parseKsImgs(url);
-                searched.put(user.getQq().longValue(), strings);
+                SEARCHED.put(user.getQq().longValue(), strings);
                 return new Result(new Object[]{strings.length}, 0);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -56,7 +56,7 @@ public class picParser {
             try {
                 String url = getUrl(request);
                 String[] strings = parseDyImgs(url);
-                searched.put(user.getQq().longValue(), strings);
+                SEARCHED.put(user.getQq().longValue(), strings);
                 return new Result(new Object[]{strings.length}, 0);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -64,7 +64,7 @@ public class picParser {
             return result;
         });
         Methods.invokes.put("picParseGet", (user, request) -> {
-            if (!searched.containsKey(user.getQq().longValue()))
+            if (!SEARCHED.containsKey(user.getQq().longValue()))
                 return result;
             String sts = request.getStr().substring(request.getOStr().indexOf("."));
             long id = user.getQq().longValue();
@@ -73,7 +73,7 @@ public class picParser {
                 long myid = request.getEvent().getBot().getId();
                 String nick = request.getEvent().getBot().getNick();
                 int i = 0;
-                for (String s : searched.get(id)) {
+                for (String s : SEARCHED.get(id)) {
                     try {
                         Image image = createImageInGroup(request.getEvent().getSubject(), s.toString());
                         assert image != null;
@@ -88,9 +88,9 @@ public class picParser {
             } else {
                 try {
                     int i = Integer.parseInt(sts);
-                    return new Result(new Object[]{searched.get(id)[i]}, 2);
+                    return new Result(new Object[]{SEARCHED.get(id)[i]}, 2);
                 } catch (Exception e) {
-                    return new Result(new Object[]{searched.get(id)[0]}, 2);
+                    return new Result(new Object[]{SEARCHED.get(id)[0]}, 2);
                 }
             }
         });
@@ -111,19 +111,19 @@ public class picParser {
         return url.trim();
     }
 
-    public static final Map<Long, String[]> searched = new LinkedHashMap<>();
+    public static final Map<Long, String[]> SEARCHED = new LinkedHashMap<>();
 
-    public static final String urlParse = "http://49.232.209.180:20041/api/search/parseImgs?url=%s&type=%s";
+    public static final String URL_PARSE = "http://kloping.life/api/search/parseImgs?url=%s&type=%s";
 
-    public static final Map<String, String[]> his = new ConcurrentHashMap<>();
+    public static final Map<String, String[]> HIS = new ConcurrentHashMap<>();
 
     public static String[] parseKsImgs(String url) {
         try {
-            String urlStr = String.format(urlParse, url.trim(), "ks");
-            if (his.containsKey(urlStr)) return his.get(urlStr);
+            String urlStr = String.format(URL_PARSE, url.trim(), "ks");
+            if (HIS.containsKey(urlStr)) return HIS.get(urlStr);
             String jsonStr = getStringFromHttpUrl(urlStr);
             String[] urls = JSON.parseObject(jsonStr, String[].class);
-            his.put(urlStr, urls);
+            HIS.put(urlStr, urls);
             return urls;
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,11 +133,11 @@ public class picParser {
 
     public static String[] parseDyImgs(String url) {
         try {
-            String urlStr = String.format(urlParse, url.trim(), "dy");
-            if (his.containsKey(urlStr)) return his.get(urlStr);
+            String urlStr = String.format(URL_PARSE, url.trim(), "dy");
+            if (HIS.containsKey(urlStr)) return HIS.get(urlStr);
             String jsonStr = getStringFromHttpUrl(urlStr);
             String[] urls = JSON.parseObject(jsonStr, String[].class);
-            his.put(urlStr, urls);
+            HIS.put(urlStr, urls);
             return urls;
         } catch (Exception e) {
             e.printStackTrace();

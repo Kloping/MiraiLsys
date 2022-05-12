@@ -18,7 +18,7 @@ class CommandLine : CompositeCommand(
     @Description("重载配置")
     @SubCommand("reload")
     suspend fun CommandSender.LsysSc1Reload() {
-        sc1.conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/sc1.json", sc1.conf, true)
+        SC1.conf = FileInitializeValue.getValue(Resource.ROOT_PATH + "/conf/Lsys/sc1.json", SC1.conf, true)
         sendMessage("已重新getSc1加载配置")
     }
 
@@ -26,8 +26,8 @@ class CommandLine : CompositeCommand(
     @SubCommand("reload")
     suspend fun CommandSender.LsysSc1SetWin(arg: String) {
         val cd = java.lang.Long.parseLong(arg.trim())
-        sc1.conf.setWin(cd.toInt())
-        sc1.conf.apply();
+        SC1.conf.setWin(cd.toInt())
+        SC1.conf.apply();
         sendMessage("设置赢的概率为${cd}%")
     }
 }

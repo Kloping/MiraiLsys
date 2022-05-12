@@ -9,7 +9,7 @@ import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
 object PutGetter {
-    val histUser = ConcurrentHashMap<Long, User>();
+    private val histUser = ConcurrentHashMap<Long, User>();
 
 
     @JvmStatic

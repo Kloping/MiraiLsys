@@ -3,6 +3,10 @@ package cn.kloping.lsys.sc1;
 
 import static cn.kloping.lsys.utils.MessageUtils.random;
 
+/**
+ * @author github-kloping
+ */
+
 public enum Mora {
     a("石头"), b("剪刀"), c("布");
 

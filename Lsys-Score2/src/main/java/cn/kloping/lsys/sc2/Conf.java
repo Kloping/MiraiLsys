@@ -3,6 +3,9 @@ package cn.kloping.lsys.sc2;
 import cn.kloping.lsys.Resource;
 import io.github.kloping.initialize.FileInitializeValue;
 
+/**
+ * @author github-kloping
+ */
 public class Conf {
     private int workCdMin = 5;
     private int workCdMax = 12;
@@ -43,6 +46,6 @@ public class Conf {
 
 
     public void apply() {
-        FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/sc2.json", this, true);
+        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/Lsys/sc2.json", this, true);
     }
 }

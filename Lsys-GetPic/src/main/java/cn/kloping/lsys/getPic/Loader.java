@@ -26,7 +26,7 @@ import static cn.kloping.lsys.utils.MessageUtils.createImageInGroup;
 public class Loader {
     public static Conf conf = new Conf(0, 12);
 
-    public static final String BASE_URL = "http://49.232.209.180:20041/api/search/pic?keyword=%s&num=%s&type=%s";
+    public static final String BASE_URL = "http://kloping.life/api/search/pic?keyword=%s&num=%s&type=%s";
 
     public static final InvokeGroup INVOKE_GROUP = new InvokeGroup("getPic");
 
@@ -45,7 +45,7 @@ public class Loader {
         INVOKE_GROUP.getInvokes().put("堆糖搜图.*", "getDuitPics");
         INVOKE_GROUP.getInvokesAfter().put("堆糖搜图.*", new String[]{"搜索到了$1个结果", "获取失败"});
 
-        conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
+        conf = FileInitializeValue.getValue(Resource.ROOT_PATH + "/conf/LSys/lsys-getPic.json", conf, true);
     }
 
     public static final Function2<User, Request, Result> FUN2 = (user, request) -> {
@@ -145,34 +145,12 @@ public class Loader {
         return new Result(new Object[]{}, 1);
     };
 
-//    public static synchronized Image createImageInGroup(Contact group, String path) {
-//        try {
-//            if (path.startsWith("http")) {
-//                return Contact.uploadImage(group, new URL(path).openStream());
-//            } else if (path.startsWith("{")) {
-//                return Image.fromId(path);
-//            } else {
-//                Image image = null;
-//                image = Contact.uploadImage(group, new File(path));
-//                return image;
-//            }
-//        } catch (IOException e) {
-//            System.err.println(path + "加载重试");
-//            try {
-//                return Contact.uploadImage(group, new URL(path).openStream());
-//            } catch (IOException ioException) {
-//                ioException.printStackTrace();
-//                return null;
-//            }
-//        }
-//    }
-
     public static void loadConf() {
-        conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
+        conf = FileInitializeValue.getValue(Resource.ROOT_PATH + "/conf/LSys/lsys-getPic.json", conf, true);
     }
 
     public static void applyConf() {
-        FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/lsys-getPic.json", conf, true);
+        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/LSys/lsys-getPic.json", conf, true);
     }
 
     public static final Runnable RUNNABLE = () -> {

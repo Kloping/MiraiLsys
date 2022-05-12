@@ -54,25 +54,25 @@ object Resource {
         val invokeGroupMap = ConcurrentHashMap<String, InvokeGroup>().apply {
             put(invokeGroup.id, invokeGroup)
         }
-        conf = Conf(File(rootPath, "/data/LSys").absolutePath, -1, HashSet(), invokeGroupMap, false)
+        conf = Conf(File(ROOT_PATH, "/data/LSys").absolutePath, -1, HashSet(), invokeGroupMap, false)
     }
 
     @OptIn(ConsoleFrontEndImplementation::class)
     @JvmField
-    val rootPath: String = MiraiConsoleImplementation.getInstance().rootPath.toFile().absolutePath
+    val ROOT_PATH: String = MiraiConsoleImplementation.getInstance().rootPath.toFile().absolutePath
 
     @JvmStatic
     fun i1() {
-        if (!File("$rootPath/", "conf/LSys/conf.json").exists()) {
+        if (!File("$ROOT_PATH/", "conf/LSys/conf.json").exists()) {
             try {
-                File("$rootPath/", "conf/LSys/conf.json").parentFile.mkdirs()
-                File("$rootPath/", "conf/LSys/conf.json").createNewFile()
+                File("$ROOT_PATH/", "conf/LSys/conf.json").parentFile.mkdirs()
+                File("$ROOT_PATH/", "conf/LSys/conf.json").createNewFile()
                 before()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         } else conf = FileInitializeValue.getValue(
-            File("$rootPath/", "conf/LSys/conf.json").absolutePath, conf, true
+            File("$ROOT_PATH/", "conf/LSys/conf.json").absolutePath, conf, true
         )
         for (r in loadConfAfter) r.run()
         conf.load()

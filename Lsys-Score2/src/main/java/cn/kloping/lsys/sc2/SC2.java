@@ -7,11 +7,11 @@ import io.github.kloping.initialize.FileInitializeValue;
 
 import static cn.kloping.lsys.sc2.Methods.*;
 
-public class sc2 {
+public class SC2 {
     public static Conf conf = new Conf();
 
     public static void start() {
-        conf = FileInitializeValue.getValue(Resource.rootPath + "/conf/Lsys/sc2.json", conf, true);
+        conf = FileInitializeValue.getValue(Resource.ROOT_PATH + "/conf/LSys/sc2.json", conf, true);
 
         InvokeGroup invokeGroup = new InvokeGroup("sco2");
 

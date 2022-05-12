@@ -3,6 +3,9 @@ package io.github.kloping.Idiom;
 import io.github.kloping.Idiom.entity.Conf;
 import net.mamoe.mirai.console.command.java.JSimpleCommand;
 
+/**
+ * @author github-kloping
+ */
 public class CommandLine extends JSimpleCommand {
     public CommandLine() {
         super(PluginMain.INSTANCE, "Lsys_idiom", "lsys-idiom");

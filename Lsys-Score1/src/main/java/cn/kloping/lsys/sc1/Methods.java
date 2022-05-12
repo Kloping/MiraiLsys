@@ -13,12 +13,15 @@ import kotlin.jvm.functions.Function2;
 
 import java.io.*;
 
-import static cn.kloping.lsys.sc1.sc1.conf;
+import static cn.kloping.lsys.sc1.SC1.conf;
 import static cn.kloping.lsys.utils.MessageUtils.random;
 import static cn.kloping.lsys.workers.Methods.*;
 
+/**
+ * @author github-kloping
+ */
 public class Methods {
-    public static final Function2<User, Request, Result> rob = (user, request) -> {
+    public static final Function2<User, Request, Result> ROB = (user, request) -> {
         long q2 = MessageUtils.getAtFromRequest(request);
         if (q2 == -1) return state1;
         User q2u = PutGetter.get(q2);
@@ -39,7 +42,7 @@ public class Methods {
         } else
             return state3;
     };
-    public static final Function2<User, Request, Result> sign = (user, request) -> {
+    public static final Function2<User, Request, Result> SIGN = (user, request) -> {
         int day = DateUtils.getDay();
         if (day != user.getUr()) {
             reg(day, user.getQq().longValue());
@@ -64,7 +67,7 @@ public class Methods {
         } else
             return state1;
     };
-    public static final Function2<User, Request, Result> moraMethod = (user, request) -> {
+    public static final Function2<User, Request, Result> MORA_METHOD = (user, request) -> {
         String str = request.getStr();
         int num = 0;
         try {
@@ -73,8 +76,8 @@ public class Methods {
         } catch (Exception e) {
             return state5;
         }
-        if (num < 5 || num > 2000)
-            return new Result(new Object[]{5, 2000}, 4);
+        if (num < conf.getMoraMin() || num > conf.getMoraMax())
+            return new Result(new Object[]{conf.getMoraMin(), conf.getMoraMax()}, 4);
         if (user.getP() < num)
             return state3;
         Mora m1 = Mora.findMora(str, 0);
@@ -91,8 +94,9 @@ public class Methods {
                 user.addP(num);
                 user.apply();
                 return new Result(new Object[]{m2.getValue(), num}, 0);
+            default:
+                throw new RuntimeException();
         }
-        throw new RuntimeException();
     };
 
     public static int getRegNum(int day) {

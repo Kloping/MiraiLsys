@@ -1,7 +1,7 @@
 package cn.kloping.lsys.entitys
 
 import cn.kloping.lsys.Resource
-import cn.kloping.lsys.Resource.rootPath
+import cn.kloping.lsys.Resource.ROOT_PATH
 import com.alibaba.fastjson.annotation.JSONField
 import io.github.kloping.initialize.FileInitializeValue
 import java.io.File
@@ -31,6 +31,6 @@ data class Conf(
     }
 
     override fun apply() {
-        FileInitializeValue.putValues(File("$rootPath/", "conf/LSys/conf.json").absolutePath, Resource.conf, true)
+        FileInitializeValue.putValues(File("$ROOT_PATH/", "conf/LSys/conf.json").absolutePath, Resource.conf, true)
     }
 }

@@ -3,6 +3,9 @@ package cn.kloping.lsys.sc1;
 import cn.kloping.lsys.Resource;
 import io.github.kloping.initialize.FileInitializeValue;
 
+/**
+ * @author github-kloping
+ */
 public class Conf {
     private int win = 40;
     private int ob = 18;
@@ -10,6 +13,24 @@ public class Conf {
     private int signFirstGet = 220;
     private int signSecondGet = 160;
     private int signThirdGet = 120;
+    private int moraMax = 2000;
+    private int moraMin = 5;
+
+    public int getMoraMax() {
+        return moraMax;
+    }
+
+    public void setMoraMax(int moraMax) {
+        this.moraMax = moraMax;
+    }
+
+    public int getMoraMin() {
+        return moraMin;
+    }
+
+    public void setMoraMin(int moraMin) {
+        this.moraMin = moraMin;
+    }
 
     public void setWin(int win) {
         this.win = win;
@@ -60,6 +81,6 @@ public class Conf {
     }
 
     public void apply() {
-        FileInitializeValue.putValues(Resource.rootPath + "/conf/Lsys/sc1.json", this, true);
+        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/Lsys/sc1.json", this, true);
     }
 }
