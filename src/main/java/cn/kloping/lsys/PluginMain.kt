@@ -12,6 +12,7 @@ import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.SimpleListenerHost
 import net.mamoe.mirai.event.events.FriendMessageEvent
 import net.mamoe.mirai.event.events.GroupMessageEvent
+import net.mamoe.mirai.event.events.GroupMessageSyncEvent
 import net.mamoe.mirai.event.events.MessageSyncEvent
 import kotlin.coroutines.CoroutineContext
 
@@ -19,7 +20,7 @@ import kotlin.coroutines.CoroutineContext
  * @Author hrs 3474006766@qq.com
  */
 class PluginMain() : KotlinPlugin(
-    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "1.0")
+    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "1.1")
         .name("p_0-Author-HRS-LSys-Loaded")
         .info("Lsys-main")
         .author("HRS")
@@ -51,7 +52,7 @@ class PluginMain() : KotlinPlugin(
             }
 
             @EventHandler
-            suspend fun handleMessage(event: MessageSyncEvent) {
+            suspend fun handleMessage(event: GroupMessageSyncEvent) {
                 val text = toText(event.message).trim();
                 handMessage(text, event)
             }

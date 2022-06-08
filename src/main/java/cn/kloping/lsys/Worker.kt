@@ -54,6 +54,7 @@ suspend fun run(str: String, event: MessageEvent) {
             }
         }
     }
+
     methodName?.let {
         MethodName2Ostr?.let {
             if (MethodName2Ostr.containsKey(methodName))
