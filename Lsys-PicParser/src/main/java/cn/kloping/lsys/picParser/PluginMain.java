@@ -18,7 +18,7 @@ public class PluginMain extends JavaPlugin {
                 .name("p_6 Author - HRS LSys picParser Loaded")
                 .info("plugin-picP")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.1", true)
+                .dependsOn("cn.kloping.Lsys", "1.2", true)
                 .build());
     }
 

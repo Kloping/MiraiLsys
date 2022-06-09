@@ -99,7 +99,7 @@ object Methods {
     @JvmField
     val mOpen: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
         val gq: Number = any?.gId!!
-        if (user.qq == Resource.conf.qq) {
+        if (Resource.conf.hasPerm(user.qq.toLong())) {
             if (conf.opens.add(gq.toLong())) {
                 Resource.conf.apply()
                 Result(null, 0)
@@ -117,7 +117,7 @@ object Methods {
     @JvmField
     val mClose: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
         val gq: Number = any?.gId!!
-        if (user.qq == Resource.conf.qq) {
+        if (Resource.conf.hasPerm(user.qq.toLong())) {
             if (Resource.conf.opens.contains(gq)) {
                 conf.opens.remove(gq);
                 conf.apply();
@@ -141,7 +141,7 @@ object Methods {
             null
         } else {
             val gq: Number = Integer.parseInt(numStr);
-            if (user.qq == Resource.conf.qq) {
+            if (Resource.conf.hasPerm(user.qq.toLong())) {
                 if (conf.opens.add(gq.toLong())) {
                     Resource.conf.apply()
                     Result(null, 0)
@@ -165,7 +165,7 @@ object Methods {
             null
         } else {
             val gq: Number = Integer.parseInt(numStr);
-            if (user.qq == Resource.conf.qq) {
+            if (Resource.conf.hasPerm(user.qq.toLong())) {
                 if (Resource.conf.opens.contains(gq)) {
                     conf.opens.remove(gq);
                     conf.apply();
@@ -186,7 +186,7 @@ object Methods {
 
     @JvmField
     val mpOpen: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
-        if (user.qq == Resource.conf.qq) {
+        if (Resource.conf.hasPerm(user.qq.toLong())) {
             Resource.conf.prK = true
             Resource.conf.apply()
             Result(null, 0)
@@ -196,7 +196,7 @@ object Methods {
 
     @JvmField
     val mpClose: (arg: User, args: Request?) -> Result? = { user: User, any: Request? ->
-        if (user.qq == Resource.conf.qq) {
+        if (Resource.conf.hasPerm(user.qq.toLong())) {
             Resource.conf.prK = false
             Resource.conf.apply()
             Result(null, 0)
