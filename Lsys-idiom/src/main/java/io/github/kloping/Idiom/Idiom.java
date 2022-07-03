@@ -75,12 +75,12 @@ public abstract class Idiom {
     }
 
     static Response request(String arg) {
-        String str = UrlUtils.getStringFromHttpUrl("http://kloping.life/api/get/idiom?word=" + URLEncoder.encode(arg));
+        String str = UrlUtils.getStringFromHttpUrl("http://kloping.top/api/get/idiom?word=" + URLEncoder.encode(arg));
         return JSON.parseObject(str).toJavaObject(Response.class);
     }
 
     static String getRandom() {
-        return UrlUtils.getStringFromHttpUrl("http://kloping.life/api/get/idiom/random");
+        return UrlUtils.getStringFromHttpUrl("http://kloping.top/api/get/idiom/random");
     }
 
     static String getStartPinyin(Response response) {
@@ -89,14 +89,14 @@ public abstract class Idiom {
     }
 
     static String getStartPinyin(String arg) {
-        String str = UrlUtils.getStringFromHttpUrl("http://kloping.life/api/get/idiom?word=" + URLEncoder.encode(arg));
+        String str = UrlUtils.getStringFromHttpUrl("http://kloping.top/api/get/idiom?word=" + URLEncoder.encode(arg));
         Response response = JSON.parseObject(str).toJavaObject(Response.class);
         String s = response.getPinyin()[0];
         return s.replaceAll("[0-9]", "");
     }
 
     static String getEndPinyin(String arg) {
-        String str = UrlUtils.getStringFromHttpUrl("http://kloping.life/api/get/idiom?word=" + URLEncoder.encode(arg));
+        String str = UrlUtils.getStringFromHttpUrl("http://kloping.top/api/get/idiom?word=" + URLEncoder.encode(arg));
         Response response = JSON.parseObject(str).toJavaObject(Response.class);
         String s = response.getPinyin()[3];
         return s.replaceAll("[0-9]", "");

@@ -26,7 +26,7 @@ import static cn.kloping.lsys.utils.MessageUtils.createImageInGroup;
 public class Loader {
     public static Conf conf = new Conf(0, 12);
 
-    public static final String BASE_URL = "http://kloping.life/api/search/pic?keyword=%s&num=%s&type=%s";
+    public static final String BASE_URL = "http://kloping.top/api/search/pic?keyword=%s&num=%s&type=%s";
 
     public static final InvokeGroup INVOKE_GROUP = new InvokeGroup("getPic");
 

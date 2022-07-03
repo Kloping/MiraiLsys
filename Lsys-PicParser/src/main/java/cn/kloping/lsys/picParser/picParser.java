@@ -113,7 +113,7 @@ public class picParser {
 
     public static final Map<Long, String[]> SEARCHED = new LinkedHashMap<>();
 
-    public static final String URL_PARSE = "http://kloping.life/api/search/parseImgs?url=%s&type=%s";
+    public static final String URL_PARSE = "http://kloping.top/api/search/parseImgs?url=%s&type=%s";
 
     public static final Map<String, String[]> HIS = new ConcurrentHashMap<>();
 

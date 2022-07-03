@@ -19,7 +19,7 @@ import java.net.URLEncoder;
  */
 public class Loader {
 
-    public static final String BASE_URL = "http://kloping.life/api/search/song?keyword=%s&type=%s";
+    public static final String BASE_URL = "http://kloping.top/api/search/song?keyword=%s&type=%s";
 
     private static final Function2<User, Request, Result> POINT_KUGOU = (user, request) -> {
         try {
