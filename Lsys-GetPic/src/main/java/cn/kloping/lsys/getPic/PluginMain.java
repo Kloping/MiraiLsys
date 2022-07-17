@@ -18,7 +18,7 @@ public class PluginMain extends JavaPlugin {
                 .name("plugin_4 Author - HRS LSys GetPic Loaded")
                 .info("plugin-pic")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys","1.2",true)
+                .dependsOn("cn.kloping.Lsys","1.3",true)
                 .build());
     }
 

@@ -18,7 +18,6 @@ import net.mamoe.mirai.message.data.SingleMessage;
 public class RepeatMethods {
     public static void start() {
         InvokeGroup invokeGroup = new InvokeGroup("repeat");
-
         invokeGroup.getInvokes().put("跟我念.*", "repeat0");
         invokeGroup.getInvokesAfter().put("跟我念.*", new String[]{"$1"});
         Methods.invokes.put("repeat0", (user, request) -> {
