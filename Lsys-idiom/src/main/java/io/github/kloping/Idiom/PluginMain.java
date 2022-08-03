@@ -19,7 +19,7 @@ public class PluginMain extends JavaPlugin {
                 .name("plugin_9 Author - HRS LSys idiom Loaded")
                 .info("plugin-idiom")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.3", true)
+                .dependsOn("cn.kloping.Lsys", "1.4", true)
                 .build());
     }
 

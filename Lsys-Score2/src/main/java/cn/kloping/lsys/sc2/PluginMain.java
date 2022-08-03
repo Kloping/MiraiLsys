@@ -17,7 +17,7 @@ public class PluginMain extends JavaPlugin {
                 .name("p_8 Author-HRS-LSys-sco2-Loaded")
                 .info("plugin-sco2")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.3", true)
+                .dependsOn("cn.kloping.Lsys", "1.4", true)
                 .build());
     }
 

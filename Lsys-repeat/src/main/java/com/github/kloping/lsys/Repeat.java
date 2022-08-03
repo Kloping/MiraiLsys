@@ -19,7 +19,7 @@ public class Repeat extends JavaPlugin {
                 .name("lsys Author HRS LSys repeat Loaded")
                 .info("plugin-sco1")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.3", true)
+                .dependsOn("cn.kloping.Lsys", "1.4", true)
                 .build());
     }
 

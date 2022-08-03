@@ -21,16 +21,15 @@ val threads = Executors.newFixedThreadPool(16)
 val showeds = ConcurrentHashMap<Long, Boolean>()
 
 suspend fun handMessage(str: String, event: MessageEvent) {
-    if (!conf.opens.contains(-1) && !conf.opens.contains(event.subject.id) && (event.sender.id != conf.qq || (Resource.conf.hasPerm(
-            event.sender.id
-        )))
-    ) {
-        if (!showeds.containsKey(event.subject.id) || !showeds[event.subject.id]!!) {
-            println("未开启群: " + event.subject.id)
-            showeds[event.subject.id] = true
-        }
-        return
+    var k0 = false
+    if (conf.opens.contains(-1)) {
+        k0 = true;
+    } else if (conf.opens.contains(event.subject.id)) {
+        k0 = true;
+    } else if (Resource.conf.hasPerm(event.sender.id)) {
+        k0 = true;
     }
+    if (!k0) return
     threads.execute { runBlocking { run(str, event) } }
 }
 
