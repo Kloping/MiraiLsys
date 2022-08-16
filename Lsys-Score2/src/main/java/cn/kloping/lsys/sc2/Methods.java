@@ -9,7 +9,7 @@ import io.github.kloping.number.NumberUtils;
 import kotlin.jvm.functions.Function2;
 
 import static cn.kloping.lsys.savers.PutGetter.get;
-import static cn.kloping.lsys.sc2.SC2.conf;
+import static cn.kloping.lsys.sc2.Sc2.conf;
 import static cn.kloping.lsys.workers.Methods.*;
 
 public class Methods {

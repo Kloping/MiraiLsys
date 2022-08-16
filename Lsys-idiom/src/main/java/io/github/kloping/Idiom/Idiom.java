@@ -8,10 +8,11 @@ import java.net.URLEncoder;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * @author HRS-Computer
+ */
 public abstract class Idiom {
-
     public Set<String> hist = new LinkedHashSet<>();
-
     private String upWord;
     private String upPinyin;
 

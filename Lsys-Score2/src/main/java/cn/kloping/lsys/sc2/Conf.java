@@ -46,6 +46,6 @@ public class Conf {
 
 
     public void apply() {
-        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/Lsys/sc2.json", this, true);
+        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/LSys/sc2.json", this, true);
     }
 }

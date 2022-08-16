@@ -29,6 +29,7 @@ suspend fun handMessage(str: String, event: MessageEvent) {
     } else if (Resource.conf.hasPerm(event.sender.id)) {
         k0 = true;
     }
+    threads.execute { runBlocking { Resource.receivers.forEach { it.onReceive(event) } } }
     if (!k0) return
     threads.execute { runBlocking { run(str, event) } }
 }
@@ -58,7 +59,7 @@ suspend fun run(str: String, event: MessageEvent) {
     }
 
     methodName?.let {
-        MethodName2Ostr?.let {
+        MethodName2Ostr.let {
             if (MethodName2Ostr.containsKey(methodName))
                 text = MethodName2Ostr.get(methodName).toString();
         }

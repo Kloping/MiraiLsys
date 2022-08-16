@@ -11,13 +11,10 @@
 
 
     <modules>
-        <module>Lsys-GetPic</module>
-        <module>Lsys-GetSong</module>
-        <module>Lsys-PicParser</module>
+        <module>Lsys-speechs</module>
         <module>Lsys-Score1</module>
         <module>Lsys-Score2</module>
         <module>Lsys-idiom</module>
-        <module>Lsys-GameBase</module>
         <module>Lsys-repeat</module>
     </modules>
 
@@ -25,7 +22,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <kotlin.version>1.6.0</kotlin.version>
-        <mirai-version>2.9.1</mirai-version>
+        <mirai-version>2.12.1</mirai-version>
     </properties>
 
     <dependencies>
@@ -76,4 +73,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 </project>

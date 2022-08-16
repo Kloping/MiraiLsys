@@ -19,11 +19,9 @@ public class Repeat extends JavaPlugin {
                 .name("lsys Author HRS LSys repeat Loaded")
                 .info("plugin-sco1")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.4", true)
+                .dependsOn("cn.kloping.Lsys", "1.5", true)
                 .build());
     }
-
-    public static final Conf CONF_INSTANCE = FileInitializeValue.getValue("./conf/LSys/repeat-conf.json", new Conf(), true);
 
     @Override
     public void onLoad(@NotNull PluginComponentStorage $this$onLoad) {

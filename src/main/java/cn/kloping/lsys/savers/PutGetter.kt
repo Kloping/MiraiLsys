@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap
 object PutGetter {
     private val histUser = ConcurrentHashMap<Long, User>();
 
-
     @JvmStatic
     fun save(user: User) {
         histUser[user.qq.toLong()] = user
@@ -27,7 +26,6 @@ object PutGetter {
             return histUser[q]!!
         val user: User
         val str = FileUtils.getStringFromFile(File(conf.path, "$q/data").path);
-
         if (!str.isNullOrBlank()) {
             val jo: JSONObject = JSON.parseObject(str);
             user = jo.toJavaObject(Class.forName("cn.kloping.lsys.entitys.User")) as User

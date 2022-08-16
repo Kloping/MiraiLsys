@@ -1,9 +1,9 @@
 package cn.kloping.lsys.sc2;
 
-import com.sun.istack.internal.NotNull;
 import net.mamoe.mirai.console.extension.PluginComponentStorage;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
+import org.jetbrains.annotations.NotNull;
 
 
 /**
@@ -17,13 +17,13 @@ public class PluginMain extends JavaPlugin {
                 .name("p_8 Author-HRS-LSys-sco2-Loaded")
                 .info("plugin-sco2")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.4", true)
+                .dependsOn("cn.kloping.Lsys", "1.5", true)
                 .build());
     }
 
     @Override
     public void onLoad(@NotNull PluginComponentStorage e0) {
-        SC2.start();
+        Sc2.start();
     }
 
     @Override

@@ -1,16 +1,16 @@
-package cn.kloping.lsys.sc1;
+package cn.kloping.lsys.speechs;
 
 import cn.kloping.lsys.Resource;
 import cn.kloping.lsys.entitys.InvokeGroup;
 import cn.kloping.lsys.workers.Methods;
 import io.github.kloping.initialize.FileInitializeValue;
 
-import static cn.kloping.lsys.sc1.Methods.*;
+import static cn.kloping.lsys.speechs.Methods.*;
 
 /**
  * @author github-kloping
  */
-public class SC1 {
+public class Sc1 {
     public static Conf conf = new Conf();
     public static void start() {
         conf = FileInitializeValue.getValue(Resource.ROOT_PATH +"/conf/LSys/sc1.json", conf, true);

@@ -31,7 +31,7 @@ public class RepeatMethods {
                     for (SingleMessage singleMessage : chain) {
                         if (singleMessage instanceof PlainText) {
                             PlainText text = (PlainText) singleMessage;
-                            String s0 = text.getContent().replace(str, "");
+                            String s0 = text.getContent().replaceFirst(str, "");
                             singleMessage = new PlainText(s0);
                         }
                         builder.append(singleMessage);

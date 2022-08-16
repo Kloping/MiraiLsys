@@ -2,9 +2,12 @@ package cn.kloping.lsys
 
 import cn.kloping.lsys.Resource.conf
 import cn.kloping.lsys.Resource.i1
+import cn.kloping.lsys.savers.PutGetter
+import cn.kloping.lsys.utils.Receiver
 import cn.kloping.lsys.utils.toText
 import net.mamoe.mirai.console.ConsoleFrontEndImplementation
 import net.mamoe.mirai.console.command.CommandManager
+import net.mamoe.mirai.console.extension.PluginComponentStorage
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.EventHandler
@@ -13,14 +16,14 @@ import net.mamoe.mirai.event.SimpleListenerHost
 import net.mamoe.mirai.event.events.FriendMessageEvent
 import net.mamoe.mirai.event.events.GroupMessageEvent
 import net.mamoe.mirai.event.events.GroupMessageSyncEvent
-import net.mamoe.mirai.event.events.MessageSyncEvent
+import net.mamoe.mirai.event.events.MessageEvent
 import kotlin.coroutines.CoroutineContext
 
 /**
  * @Author hrs 3474006766@qq.com
  */
 class PluginMain() : KotlinPlugin(
-    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "1.4")
+    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "1.5")
         .name("p_0-Author-HRS-LSys-Loaded")
         .info("Lsys-main")
         .author("HRS")
@@ -57,6 +60,14 @@ class PluginMain() : KotlinPlugin(
                 handMessage(text, event)
             }
         })
+
+        val r0 = object : Receiver {
+            override fun onReceive(event: MessageEvent?) {
+                val user = event?.sender?.let { PutGetter.get(it.id, true) }
+                user?.addSpeeches()?.apply()
+            }
+        }
+        Resource.receivers.add(r0);
     }
 
     companion object {

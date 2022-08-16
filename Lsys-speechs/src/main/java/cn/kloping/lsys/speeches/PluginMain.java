@@ -1,12 +1,10 @@
-package cn.kloping.lsys.sc1;
+package cn.kloping.lsys.speeches;
 
-import com.sun.istack.internal.NotNull;
 import net.mamoe.mirai.console.command.CommandManager;
 import net.mamoe.mirai.console.extension.PluginComponentStorage;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
-
-import static cn.kloping.lsys.sc1.SC1.start;
+import org.jetbrains.annotations.NotNull;
 
 
 /**
@@ -20,13 +18,13 @@ public class PluginMain extends JavaPlugin {
                 .name("p_7 Author - HRS LSys sco1 Loaded")
                 .info("plugin-sco1")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.4", true)
+                .dependsOn("cn.kloping.Lsys", "1.5", true)
                 .build());
     }
 
     @Override
     public void onLoad(@NotNull PluginComponentStorage e0) {
-        start();
+        Speeches.start();
     }
 
     @Override

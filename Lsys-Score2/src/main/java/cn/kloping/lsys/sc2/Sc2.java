@@ -7,7 +7,7 @@ import io.github.kloping.initialize.FileInitializeValue;
 
 import static cn.kloping.lsys.sc2.Methods.*;
 
-public class SC2 {
+public class Sc2 {
     public static Conf conf = new Conf();
 
     public static void start() {

@@ -2,6 +2,7 @@ package cn.kloping.lsys
 
 import cn.kloping.lsys.entitys.Conf
 import cn.kloping.lsys.entitys.InvokeGroup
+import cn.kloping.lsys.utils.Receiver
 import cn.kloping.lsys.workers.Methods
 import io.github.kloping.initialize.FileInitializeValue
 import net.mamoe.mirai.console.ConsoleFrontEndImplementation
@@ -79,4 +80,7 @@ object Resource {
         conf.apply()
         Methods.init()
     }
+
+    @JvmField
+    val receivers = ArrayList<Receiver>()
 }

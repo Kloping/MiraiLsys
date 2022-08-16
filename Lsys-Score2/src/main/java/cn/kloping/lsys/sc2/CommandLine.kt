@@ -18,7 +18,7 @@ class CommandLine : CompositeCommand(
     @Description("重载配置")
     @SubCommand("reload")
     suspend fun CommandSender.LsysSc2Reload() {
-        SC2.conf = FileInitializeValue.getValue(Resource.ROOT_PATH + "/conf/Lsys/sc2.json", SC2.conf, true)
+        Sc2.conf = FileInitializeValue.getValue(Resource.ROOT_PATH + "/conf/LSys/sc2.json", Sc2.conf, true)
         sendMessage("已重新getSc2加载配置")
     }
 }

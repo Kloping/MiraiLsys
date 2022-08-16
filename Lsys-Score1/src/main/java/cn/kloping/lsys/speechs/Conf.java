@@ -1,4 +1,4 @@
-package cn.kloping.lsys.sc1;
+package cn.kloping.lsys.speechs;
 
 import cn.kloping.lsys.Resource;
 import io.github.kloping.initialize.FileInitializeValue;
@@ -81,6 +81,6 @@ public class Conf {
     }
 
     public void apply() {
-        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/Lsys/sc1.json", this, true);
+        FileInitializeValue.putValues(Resource.ROOT_PATH + "/conf/LSys/sc1.json", this, true);
     }
 }
