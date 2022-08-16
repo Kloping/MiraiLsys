@@ -1,11 +1,11 @@
 package cn.kloping.lsys
 
 import cn.kloping.lsys.Resource.i1
+import cn.kloping.lsys.savers.PutGetter
 import net.mamoe.mirai.console.command.CommandSender
-import net.mamoe.mirai.console.command.SimpleCommand
-import java.lang.System.err
+import net.mamoe.mirai.console.command.CompositeCommand
 
-class CommandLine : SimpleCommand(
+class CommandLine : CompositeCommand(
     PluginMain.INSTANCE, "Lsys", "reload",
     description = "kloping的Lsys插件指令"
 ) {
@@ -15,42 +15,40 @@ class CommandLine : SimpleCommand(
         val INSTANCE = CommandLine()
     }
 
-    @Handler
-    fun CommandSender.handle(arg: String) {
-        when {
-            arg == "reload" -> {
-                i1()
-                histMat.clear()
-                MethodName2Ostr.clear()
-                println("已清除历史匹配")
-                println("已重新加载配置")
-            }
-            arg == "clearHist" -> {
-                histMat.clear()
-                MethodName2Ostr.clear()
-                println("已清除历史匹配")
-            }
-            arg == "update" -> {
-                println("正在更新插件")
-            }
-            arg.startsWith("setMain=") -> {
-                try {
-                    val q = java.lang.Long.parseLong(arg.substring("setMain=".length))
-                    Resource.conf.qq = q
-                    Resource.conf.apply()
-                    println("设置主任为 : ${q}")
-                } catch (e: Exception) {
-                    err.println("非数字")
-                }
-            }
-            else -> {
-                err.println(
-                    "已知参数:\n" +
-                            "reload\t#重新加载配置\n" +
-                            "setMain=\t#设置主q\n" +
-                            "clearHist\t#清除历史匹配\n"
-                )
-            }
-        }
+    @Description("重载配置")
+    @SubCommand("reload")
+    suspend fun CommandSender.LsysReload() {
+        i1()
+        histMat.clear()
+        MethodName2Ostr.clear()
+        sendMessage("OK")
+    }
+
+    @Description("清除历史匹配")
+    @SubCommand("clearHist")
+    suspend fun CommandSender.LsysClearHist() {
+        histMat.clear()
+        MethodName2Ostr.clear()
+        sendMessage("OK")
+    }
+
+    @Description("设置主人")
+    @SubCommand("setMain")
+    suspend fun CommandSender.LsysSetMain(@Name("qid") qid: Long) {
+        Resource.conf.qq = qid
+        Resource.conf.apply()
+        sendMessage("OK")
+    }
+
+    @CompositeCommand.Description("增加某人积分")
+    @CompositeCommand.SubCommand("addScore")
+    suspend fun CommandSender.LsysAddScore(
+        @CompositeCommand.Name("qq") qid: Long,
+        @CompositeCommand.Name("值") n: Long
+    ) {
+        val user = PutGetter.get(qid, true);
+        user.addP(n)
+        user.apply()
+        sendMessage("OK")
     }
 }

@@ -90,6 +90,17 @@ data class User(
         return this;
     }
 
+    fun addSpeeches(n: Int): User {
+        speeches += n;
+        speeches_total += n;
+        val d0 = DateUtils.getDay()
+        if (speeches_day != d0) {
+            speeches_day = d0;
+            speeches = 0;
+        }
+        return this;
+    }
+
     override fun apply() {
         save(this)
     }
