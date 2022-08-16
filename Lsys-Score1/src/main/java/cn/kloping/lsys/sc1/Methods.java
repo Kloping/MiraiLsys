@@ -1,4 +1,4 @@
-package cn.kloping.lsys.speechs;
+package cn.kloping.lsys.sc1;
 
 import cn.kloping.lsys.Resource;
 import cn.kloping.lsys.entitys.Request;
@@ -13,7 +13,7 @@ import kotlin.jvm.functions.Function2;
 
 import java.io.*;
 
-import static cn.kloping.lsys.speechs.Sc1.conf;
+import static cn.kloping.lsys.sc1.Sc1.conf;
 import static cn.kloping.lsys.utils.MessageUtils.random;
 import static cn.kloping.lsys.workers.Methods.*;
 

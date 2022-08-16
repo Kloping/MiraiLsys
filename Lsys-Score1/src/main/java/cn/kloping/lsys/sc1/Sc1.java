@@ -1,11 +1,11 @@
-package cn.kloping.lsys.speechs;
+package cn.kloping.lsys.sc1;
 
 import cn.kloping.lsys.Resource;
 import cn.kloping.lsys.entitys.InvokeGroup;
 import cn.kloping.lsys.workers.Methods;
 import io.github.kloping.initialize.FileInitializeValue;
 
-import static cn.kloping.lsys.speechs.Methods.*;
+import static cn.kloping.lsys.sc1.Methods.*;
 
 /**
  * @author github-kloping

@@ -14,9 +14,9 @@ public class PluginMain extends JavaPlugin {
     public static final PluginMain INSTANCE = new PluginMain();
 
     private PluginMain() {
-        super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.sco1.PluginMain", "1.0")
-                .name("p_7 Author - HRS LSys sco1 Loaded")
-                .info("plugin-sco1")
+        super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.speeches.PluginMain", "1.0")
+                .name("p_8 Author - HRS LSys speeches Loaded")
+                .info("plugin-speeches")
                 .author("HRS")
                 .dependsOn("cn.kloping.Lsys", "1.5", true)
                 .build());

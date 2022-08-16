@@ -1,4 +1,4 @@
-package cn.kloping.lsys.speechs;
+package cn.kloping.lsys.sc1;
 
 
 import static cn.kloping.lsys.utils.MessageUtils.random;

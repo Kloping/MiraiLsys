@@ -1,4 +1,4 @@
-package cn.kloping.lsys.speechs;
+package cn.kloping.lsys.sc1;
 
 import cn.kloping.lsys.Resource;
 import io.github.kloping.initialize.FileInitializeValue;
