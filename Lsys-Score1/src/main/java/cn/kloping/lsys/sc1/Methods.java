@@ -58,6 +58,7 @@ public class Methods {
                 case 3:
                     s1 = conf.getSignThirdGet();
                     break;
+                default:break;
             }
             user.setPf(0);
             user.addP(s1);

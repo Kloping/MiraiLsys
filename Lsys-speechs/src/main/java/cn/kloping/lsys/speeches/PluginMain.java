@@ -14,11 +14,11 @@ public class PluginMain extends JavaPlugin {
     public static final PluginMain INSTANCE = new PluginMain();
 
     private PluginMain() {
-        super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.speeches.PluginMain", "1.0")
+        super(new JvmPluginDescriptionBuilder("cn.kloping.lsys.speeches.PluginMain", "1.1")
                 .name("p_8 Author - HRS LSys speeches Loaded")
                 .info("plugin-speeches")
                 .author("HRS")
-                .dependsOn("cn.kloping.Lsys", "1.5", true)
+                .dependsOn("cn.kloping.Lsys", "1.6", true)
                 .build());
     }
 

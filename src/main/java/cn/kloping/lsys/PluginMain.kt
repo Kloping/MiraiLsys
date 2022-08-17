@@ -23,7 +23,7 @@ import kotlin.coroutines.CoroutineContext
  * @Author hrs 3474006766@qq.com
  */
 class PluginMain() : KotlinPlugin(
-    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "1.5")
+    JvmPluginDescriptionBuilder("cn.kloping.Lsys", "1.6")
         .name("p_0-Author-HRS-LSys-Loaded")
         .info("Lsys-main")
         .author("HRS")

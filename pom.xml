@@ -29,7 +29,7 @@
         <dependency>
             <groupId>io.github.Kloping</groupId>
             <artifactId>JvUtils</artifactId>
-            <version>0.3.4</version>
+            <version>0.4.3</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -39,6 +39,11 @@
         <dependency>
             <groupId>net.mamoe</groupId>
             <artifactId>mirai-core-all</artifactId>
+            <version>${mirai-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.mamoe</groupId>
+            <artifactId>mirai-core</artifactId>
             <version>${mirai-version}</version>
         </dependency>
         <dependency>
@@ -55,22 +60,6 @@
             <groupId>net.mamoe</groupId>
             <artifactId>mirai-console-terminal</artifactId>
             <version>${mirai-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-reflect</artifactId>
-            <version>1.6.0-M1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -9,11 +9,12 @@ import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
 object PutGetter {
-    private val histUser = ConcurrentHashMap<Long, User>();
+    @JvmField
+    val HIST_USER = ConcurrentHashMap<Long, User>();
 
     @JvmStatic
     fun save(user: User) {
-        histUser[user.qq.toLong()] = user
+        HIST_USER[user.qq.toLong()] = user
         FileUtils.putStringInFile(JSON.toJSONString(user), File(conf.path, user.qq.toString() + "/data"))
     }
 
@@ -22,14 +23,14 @@ object PutGetter {
              * 获取某人的信息 若不存在 则返回 null
              */
     fun get(q: Long): User? {
-        if (histUser.containsKey(q))
-            return histUser[q]!!
+        if (HIST_USER.containsKey(q))
+            return HIST_USER[q]!!
         val user: User
         val str = FileUtils.getStringFromFile(File(conf.path, "$q/data").path);
         if (!str.isNullOrBlank()) {
             val jo: JSONObject = JSON.parseObject(str);
             user = jo.toJavaObject(Class.forName("cn.kloping.lsys.entitys.User")) as User
-            histUser[user.qq.toLong()] = user
+            HIST_USER[user.qq.toLong()] = user
             return user;
         }
         return null
@@ -40,8 +41,8 @@ object PutGetter {
              * k: 是否强制生成
              */
     fun get(q: Long, k: Boolean): User {
-        if (histUser.containsKey(q))
-            return histUser[q]!!
+        if (HIST_USER.containsKey(q))
+            return HIST_USER[q]!!
         val user: User
         val str = FileUtils.getStringFromFile(File(conf.path, "$q/data").path);
         if (str.isNullOrBlank() && k) {
@@ -51,7 +52,7 @@ object PutGetter {
             val jo: JSONObject = JSON.parseObject(str);
             user = jo.toJavaObject(Class.forName("cn.kloping.lsys.entitys.User")) as User
         }
-        histUser[user.qq.toLong()] = user
+        HIST_USER[user.qq.toLong()] = user
         return user;
     }
 

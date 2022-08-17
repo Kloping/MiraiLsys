@@ -229,7 +229,7 @@ object Methods {
             var i = 1;
             for (e in it) {
                 val tp1 = "$" + i++;
-                resText = resText.replace(tp1, e.toString());
+                resText = resText.replaceFirst(tp1, e.toString());
             }
         }
         val mb = MessageChainBuilder()

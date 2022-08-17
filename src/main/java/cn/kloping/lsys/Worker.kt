@@ -82,7 +82,7 @@ suspend fun run(str: String, event: MessageEvent) {
                         var i = 1;
                         for (e in res.returnArgs!!) {
                             val tp1 = "$" + i++;
-                            resText = resText?.replace(tp1, e.toString());
+                            resText = resText?.replaceFirst(tp1, e.toString());
                         }
                     }
                     val mb = MessageChainBuilder()
@@ -149,8 +149,7 @@ fun toLink(string: String): LinkedList<String> {
         }
         str = str.substring(m1.length + m2.length)
         if (str.isNullOrEmpty()) break
-        else
-            mat = patt.matcher(str)
+        else mat = patt.matcher(str)
     }
     if (str.isNotEmpty()) list.add(str)
     return list
