@@ -12,8 +12,6 @@ import net.mamoe.mirai.event.events.GroupMessageSyncEvent;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static cn.kloping.lsys.workers.Methods.state1;
-
 /**
  * @author github-kloping
  */
@@ -29,28 +27,28 @@ public class Methods {
             Long t0 = o2.getValue() - o1.getValue();
             return t0.intValue();
         });
-        if (q2c.size() < 5) return state1;
-        List<Object> list = new LinkedList<>();
-        int i = 5;
-        if (request.getEvent() instanceof GroupMessageEvent || request.getEvent() instanceof GroupMessageSyncEvent) {
-            Group group = (Group) request.getEvent().getSubject();
-            for (Map.Entry<Long, Long> kv : q2c) {
-                if (i == 0) break;
-                list.add(Objects.requireNonNull(group.get(kv.getKey())).getNameCard());
-                list.add(kv.getKey());
-                list.add(kv.getValue());
-                i--;
-            }
-        } else {
-            for (Map.Entry<Long, Long> kv : q2c) {
-                if (i == 0) break;
-                list.add(kv.getKey());
-                list.add(kv.getKey());
-                list.add(kv.getValue());
-                i--;
-            }
-        }
-        return new Result(list.toArray(), 0);
+//        if (q2c.size() < 5) return state1;
+//        List<Object> list = new LinkedList<>();
+//        int i = 5;
+//        if (request.getEvent() instanceof GroupMessageEvent || request.getEvent() instanceof GroupMessageSyncEvent) {
+//            Group group = (Group) request.getEvent().getSubject();
+//            for (Map.Entry<Long, Long> kv : q2c) {
+//                if (i == 0) break;
+//                list.add(Objects.requireNonNull(group.get(kv.getKey())).getNameCard());
+//                list.add(kv.getKey());
+//                list.add(kv.getValue());
+//                i--;
+//            }
+//        } else {
+//            for (Map.Entry<Long, Long> kv : q2c) {
+//                if (i == 0) break;
+//                list.add(kv.getKey());
+//                list.add(kv.getKey());
+//                list.add(kv.getValue());
+//                i--;
+//            }
+//        }
+        return new Result(new Object[]{q2c}, 0);
     };
 
     public static final Function2<User, Request, Result> SPEECHES_PH_DAY = (user, request) -> {
@@ -63,27 +61,28 @@ public class Methods {
             Long t0 = o2.getValue() - o1.getValue();
             return t0.intValue();
         });
-        if (q2c.size() < 5) return state1;
-        List<Object> list = new LinkedList<>();
-        int i = 5;
-        if (request.getEvent() instanceof GroupMessageEvent || request.getEvent() instanceof GroupMessageSyncEvent) {
-            Group group = (Group) request.getEvent().getSubject();
-            for (Map.Entry<Long, Long> kv : q2c) {
-                if (i == 0) break;
-                list.add(Objects.requireNonNull(group.get(kv.getKey())).getNameCard());
-                list.add(kv.getKey());
-                list.add(kv.getValue());
-                i--;
-            }
-        } else {
-            for (Map.Entry<Long, Long> kv : q2c) {
-                if (i == 0) break;
-                list.add(kv.getKey());
-                list.add(kv.getKey());
-                list.add(kv.getValue());
-                i--;
-            }
-        }
-        return new Result(list.toArray(), 0);
+//        if (q2c.size() < 5) return state1;
+//        List<Object> list = new LinkedList<>();
+//        int i = 5;
+//        if (request.getEvent() instanceof GroupMessageEvent || request.getEvent() instanceof GroupMessageSyncEvent) {
+//            Group group = (Group) request.getEvent().getSubject();
+//            for (Map.Entry<Long, Long> kv : q2c) {
+//                if (i == 0) break;
+//                list.add(Objects.requireNonNull(group.get(kv.getKey())).getNameCard());
+//                list.add(kv.getKey());
+//                list.add(kv.getValue());
+//                i--;
+//            }
+//        } else {
+//            for (Map.Entry<Long, Long> kv : q2c) {
+//                if (i == 0) break;
+//                list.add(kv.getKey());
+//                list.add(kv.getKey());
+//                list.add(kv.getValue());
+//                i--;
+//            }
+//        }
+//        return new Result(list.toArray(), 0);
+        return new Result(new Object[]{q2c}, 0);
     };
 }

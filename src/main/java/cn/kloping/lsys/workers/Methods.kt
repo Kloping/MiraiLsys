@@ -234,7 +234,7 @@ object Methods {
         }
         val mb = MessageChainBuilder()
         for (e in toLink(resText)) {
-            runBlocking { parseType(e.toString(), contact, id)?.let { it1 -> mb.append(it1) } }
+            runBlocking { parseType(e.toString(), contact, id, args as Array<Any>)?.let { it1 -> mb.append(it1) } }
         }
         if (!mb.isEmpty()) {
             runBlocking { contact.sendMessage(mb.build()) }

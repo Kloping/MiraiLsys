@@ -5,8 +5,11 @@ import cn.kloping.lsys.entitys.Request
 import cn.kloping.lsys.savers.PutGetter
 import cn.kloping.lsys.utils.MessageUtils.createImageInGroup
 import cn.kloping.lsys.workers.Methods.invokes
+import io.github.kloping.number.NumberUtils
 import kotlinx.coroutines.runBlocking
 import net.mamoe.mirai.contact.Contact
+import net.mamoe.mirai.contact.Group
+import net.mamoe.mirai.contact.getMember
 import net.mamoe.mirai.event.events.MessageEvent
 import net.mamoe.mirai.message.code.MiraiCode
 import net.mamoe.mirai.message.data.*
@@ -87,7 +90,11 @@ suspend fun run(str: String, event: MessageEvent) {
                     }
                     val mb = MessageChainBuilder()
                     for (e in toLink(resText!!)) {
-                        parseType(e.toString(), event.subject, event.sender.id)?.let { it1 -> mb.append(it1) }
+                        parseType(e.toString(), event.subject, event.sender.id, res.returnArgs)?.let { it1 ->
+                            mb.append(
+                                it1
+                            )
+                        }
                     }
                     if (!mb.isEmpty())
                         event.subject.sendMessage(mb.build())
@@ -100,7 +107,7 @@ suspend fun run(str: String, event: MessageEvent) {
 
 val eReg = Regex(",\\s+");
 
-suspend fun parseType(resText: String, contact: Contact, id: Long): Message? {
+suspend fun parseType(resText: String, contact: Contact, id: Long, oArgs: Array<Any>?): Message? {
     if (resText.startsWith("<") && resText.endsWith(">")) {
         val content = resText.substring(1, resText.length - 1)
         val ta = content.split(" = ")
@@ -121,6 +128,41 @@ suspend fun parseType(resText: String, contact: Contact, id: Long): Message? {
                 }
                 type == "Face" -> {
                     return Face(Integer.parseInt(args[0]))
+                }
+                type.startsWith("ForKv") -> {
+                    if (oArgs?.get(0) is List<*>) {
+                        val q2c: List<Map.Entry<Long, Long>> = oArgs.get(0) as List<Map.Entry<Long, Long>>
+                        val sb0 = StringBuilder();
+                        val template = args[0]
+                        val n = Integer.valueOf(NumberUtils.findNumberFromString(type))
+                        for (i in 0 until n) {
+                            if (q2c.size <= i) continue;
+                            var k = q2c.get(i).key
+                            var v = q2c.get(i).value
+                            if (contact is Group) {
+                                val g0: Group = contact;
+                                var name = g0.getMember(k)?.nameCard
+                                name = if (name == null || name.isEmpty()) g0.getMember(k)?.nick else name
+                                name = if (name == null || name.isEmpty()) k.toString() else name
+                                sb0.append(
+                                    template
+                                        .replace("\$st", (i + 1).toString())
+                                        .replace("\$name(\$lk)", name)
+                                        .replace("\$lk", k.toString())
+                                        .replace("\$lv", v.toString())
+                                ).append("\n")
+                            } else {
+                                sb0.append(
+                                    template
+                                        .replace("\$st", (i + 1).toString())
+                                        .replace("\$name(\$lk)", k.toString())
+                                        .replace("\$lk", k.toString())
+                                        .replace("\$lv", v.toString())
+                                ).append("\n")
+                            }
+                        }
+                        return PlainText(sb0.toString().trim())
+                    }
                 }
             }
         } catch (e: Exception) {
