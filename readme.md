@@ -7,6 +7,9 @@
     - 配置齐全
     - 扩展方便
 
+
+### **使用前请检查依赖(lib-tts)是否一同添加至plugins 前往 [releases](https://github.com/Kloping/Mirai_Plugins_Auto_Reply/releases) 查找**
+
 主插件 : [a1-miraiLSys.jar](https://github.com/Kloping/MiraiLsys/releases/)
 
 若无极端情况 请不要修改 文件名 否则将无法正常工作
