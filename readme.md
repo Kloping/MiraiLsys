@@ -8,7 +8,7 @@
     - 扩展方便
 
 
-### **使用前请检查依赖(lib-tts)是否一同添加至plugins 前往 [releases](https://github.com/Kloping/Mirai_Plugins_Auto_Reply/releases) 查找**
+### **使用前请检查依赖(lib-tts)是否一同添加至plugins 前往 [releases](https://github.com/gdpl2112/lib-tts/) 查找**
 
 主插件 : [a1-miraiLSys.jar](https://github.com/Kloping/MiraiLsys/releases/)
 

@@ -22,14 +22,14 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <kotlin.version>1.6.0</kotlin.version>
-        <mirai-version>2.12.1</mirai-version>
+        <mirai-version>2.14.0</mirai-version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.github.Kloping</groupId>
             <artifactId>JvUtils</artifactId>
-            <version>0.4.3</version>
+            <version>0.4.7</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
