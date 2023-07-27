@@ -73,7 +73,11 @@ suspend fun run(str: String, event: MessageEvent) {
             val r1 = Request(str, text, event.sender.id, event.subject.id, event, null)
             val res = this(PutGetter.get(event.sender.id, true), r1)
             res?.let {
-                var resText = conf.invokesAfter[text]?.get(it.state)
+                val afs = conf.invokesAfter[text];
+                if (afs == null || afs.size < it.state + 1) {
+                    return
+                }
+                var resText = afs.get(it.state)
                 resText!!.apply {
                     if (this.trim().startsWith("[") && this.trim().endsWith("]")) {
                         val codeStr = this.substring(1, this.length - 1)
@@ -85,11 +89,11 @@ suspend fun run(str: String, event: MessageEvent) {
                         var i = 1;
                         for (e in res.returnArgs!!) {
                             val tp1 = "$" + i++;
-                            resText = resText?.replaceFirst(tp1, e.toString());
+                            resText = resText.replaceFirst(tp1, e.toString()).toString();
                         }
                     }
                     val mb = MessageChainBuilder()
-                    for (e in toLink(resText!!)) {
+                    for (e in toLink(resText)) {
                         parseType(e.toString(), event.subject, event.sender.id, res.returnArgs)?.let { it1 ->
                             mb.append(
                                 it1

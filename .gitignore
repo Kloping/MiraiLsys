@@ -78,3 +78,8 @@ hs_err_pid*
 *.json
 Lsys-PartN
 libs
+plugins
+plugin-libraries
+plugin-shared-libraries
+KFCFactory.json
+android_pad.json
